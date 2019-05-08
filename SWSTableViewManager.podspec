@@ -15,5 +15,5 @@ Pod::Spec.new do |spec|
   spec.author             = { "shiwensong" => "18996601419@189.cn" }
   spec.platform     = :ios
   spec.source       = { :git => "https://github.com/shiwensong/SWSTableViewManager.git", :tag => "#{spec.version}" }
-  spec.source_files  = "Classes/TableViewManager/**/*.{h,m}"
+  spec.source_files  = "Classes/SWSTableViewManager/**/*.{h,m}"
 end
