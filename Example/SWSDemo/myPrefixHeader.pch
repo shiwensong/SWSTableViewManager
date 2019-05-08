@@ -16,7 +16,7 @@
 #import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
 #import <YYKit/YYKit.h>
-#import "TableViewManager/TableViewManager.h"
+#import "TableViewManager.h"
 #import "UIViewController+addFresh.h"
 
 #import <MJExtension/MJExtension.h>

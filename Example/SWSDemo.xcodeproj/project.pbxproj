@@ -21,6 +21,8 @@
 		BAA80C40227E8C00009B14FE /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA80C3E227E8C00009B14FE /* InfoCell.xib */; };
 		BAA80C45227E9249009B14FE /* ContentwCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA80C43227E9249009B14FE /* ContentwCell.m */; };
 		BAA80C46227E9249009B14FE /* ContentwCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA80C44227E9249009B14FE /* ContentwCell.xib */; };
+		BAA9FB58228279700030A8A1 /* TableViewSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9FB54228279700030A8A1 /* TableViewSectionInfo.m */; };
+		BAA9FB59228279700030A8A1 /* TableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9FB57228279700030A8A1 /* TableViewManager.m */; };
 		BAB71E8E2277D939009021D1 /* NetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB71E8C2277D939009021D1 /* NetCell.m */; };
 		BAB71E8F2277D939009021D1 /* NetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB71E8D2277D939009021D1 /* NetCell.xib */; };
 		BAB71E922277DC2B009021D1 /* NetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB71E912277DC2B009021D1 /* NetModel.m */; };
@@ -31,8 +33,6 @@
 		BACCE46A2265C0EF00FDFAFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BACCE4692265C0EF00FDFAFD /* Assets.xcassets */; };
 		BACCE46D2265C0EF00FDFAFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BACCE46B2265C0EF00FDFAFD /* LaunchScreen.storyboard */; };
 		BACCE4702265C0EF00FDFAFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCE46F2265C0EF00FDFAFD /* main.m */; };
-		BACCE47B2265C0FF00FDFAFD /* TableViewSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCE4772265C0FF00FDFAFD /* TableViewSectionInfo.m */; };
-		BACCE47C2265C0FF00FDFAFD /* TableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCE47A2265C0FF00FDFAFD /* TableViewManager.m */; };
 		BACCE4802265CE7100FDFAFD /* UIViewController+addFresh.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCE47F2265CE7100FDFAFD /* UIViewController+addFresh.m */; };
 		BACCE4832265CF4300FDFAFD /* NetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCE4822265CF4300FDFAFD /* NetViewController.m */; };
 /* End PBXBuildFile section */
@@ -59,6 +59,10 @@
 		BAA80C42227E9249009B14FE /* ContentwCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentwCell.h; sourceTree = "<group>"; };
 		BAA80C43227E9249009B14FE /* ContentwCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentwCell.m; sourceTree = "<group>"; };
 		BAA80C44227E9249009B14FE /* ContentwCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentwCell.xib; sourceTree = "<group>"; };
+		BAA9FB54228279700030A8A1 /* TableViewSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewSectionInfo.m; sourceTree = "<group>"; };
+		BAA9FB55228279700030A8A1 /* TableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewManager.h; sourceTree = "<group>"; };
+		BAA9FB56228279700030A8A1 /* TableViewSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewSectionInfo.h; sourceTree = "<group>"; };
+		BAA9FB57228279700030A8A1 /* TableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewManager.m; sourceTree = "<group>"; };
 		BAB71E8B2277D939009021D1 /* NetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetCell.h; sourceTree = "<group>"; };
 		BAB71E8C2277D939009021D1 /* NetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetCell.m; sourceTree = "<group>"; };
 		BAB71E8D2277D939009021D1 /* NetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetCell.xib; sourceTree = "<group>"; };
@@ -76,10 +80,6 @@
 		BACCE46C2265C0EF00FDFAFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BACCE46E2265C0EF00FDFAFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BACCE46F2265C0EF00FDFAFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BACCE4772265C0FF00FDFAFD /* TableViewSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewSectionInfo.m; sourceTree = "<group>"; };
-		BACCE4782265C0FF00FDFAFD /* TableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewManager.h; sourceTree = "<group>"; };
-		BACCE4792265C0FF00FDFAFD /* TableViewSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewSectionInfo.h; sourceTree = "<group>"; };
-		BACCE47A2265C0FF00FDFAFD /* TableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewManager.m; sourceTree = "<group>"; };
 		BACCE47D2265C19600FDFAFD /* myPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPrefixHeader.pch; sourceTree = "<group>"; };
 		BACCE47E2265CE7100FDFAFD /* UIViewController+addFresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+addFresh.h"; sourceTree = "<group>"; };
 		BACCE47F2265CE7100FDFAFD /* UIViewController+addFresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+addFresh.m"; sourceTree = "<group>"; };
@@ -191,6 +191,18 @@
 			path = Section2;
 			sourceTree = "<group>";
 		};
+		BAA9FB53228279700030A8A1 /* TableViewManager */ = {
+			isa = PBXGroup;
+			children = (
+				BAA9FB54228279700030A8A1 /* TableViewSectionInfo.m */,
+				BAA9FB55228279700030A8A1 /* TableViewManager.h */,
+				BAA9FB56228279700030A8A1 /* TableViewSectionInfo.h */,
+				BAA9FB57228279700030A8A1 /* TableViewManager.m */,
+			);
+			name = TableViewManager;
+			path = ../../Classes/TableViewManager;
+			sourceTree = "<group>";
+		};
 		BAB71E882277D915009021D1 /* Net */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,12 +252,12 @@
 		BACCE45F2265C0ED00FDFAFD /* SWSDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BAA9FB53228279700030A8A1 /* TableViewManager */,
 				BAA80C24227E7A2D009B14FE /* 处方界面 */,
 				BAB71E882277D915009021D1 /* Net */,
 				BA8F2EA92266B3280008BFED /* Cell */,
 				BACCE47E2265CE7100FDFAFD /* UIViewController+addFresh.h */,
 				BACCE47F2265CE7100FDFAFD /* UIViewController+addFresh.m */,
-				BACCE4762265C0FF00FDFAFD /* TableViewManager */,
 				BACCE4602265C0ED00FDFAFD /* AppDelegate.h */,
 				BACCE4612265C0ED00FDFAFD /* AppDelegate.m */,
 				BACCE4632265C0ED00FDFAFD /* ViewController.h */,
@@ -262,17 +274,6 @@
 				BAB71E942277E97D009021D1 /* InputViewController.m */,
 			);
 			path = SWSDemo;
-			sourceTree = "<group>";
-		};
-		BACCE4762265C0FF00FDFAFD /* TableViewManager */ = {
-			isa = PBXGroup;
-			children = (
-				BACCE4772265C0FF00FDFAFD /* TableViewSectionInfo.m */,
-				BACCE4782265C0FF00FDFAFD /* TableViewManager.h */,
-				BACCE4792265C0FF00FDFAFD /* TableViewSectionInfo.h */,
-				BACCE47A2265C0FF00FDFAFD /* TableViewManager.m */,
-			);
-			path = TableViewManager;
 			sourceTree = "<group>";
 		};
 		F103F3F27ED3E02072E95626 /* Pods */ = {
@@ -410,16 +411,16 @@
 				BAA80C39227E85A2009B14FE /* PresAddressCell.m in Sources */,
 				BACCE4832265CF4300FDFAFD /* NetViewController.m in Sources */,
 				BACCE4652265C0ED00FDFAFD /* ViewController.m in Sources */,
+				BAA9FB58228279700030A8A1 /* TableViewSectionInfo.m in Sources */,
 				BAA80C2E227E7B83009B14FE /* PrescriptionHeaderCell.m in Sources */,
 				BAB71E922277DC2B009021D1 /* NetModel.m in Sources */,
 				BAA80C2A227E7A70009B14FE /* PrescriptionViewController.m in Sources */,
-				BACCE47B2265C0FF00FDFAFD /* TableViewSectionInfo.m in Sources */,
 				BAA80C45227E9249009B14FE /* ContentwCell.m in Sources */,
-				BACCE47C2265C0FF00FDFAFD /* TableViewManager.m in Sources */,
 				BAA80C33227E829C009B14FE /* PresSectionHeaderCell.m in Sources */,
 				BACCE4802265CE7100FDFAFD /* UIViewController+addFresh.m in Sources */,
 				BAB71E952277E97D009021D1 /* InputViewController.m in Sources */,
 				BACCE4702265C0EF00FDFAFD /* main.m in Sources */,
+				BAA9FB59228279700030A8A1 /* TableViewManager.m in Sources */,
 				BAB71E8E2277D939009021D1 /* NetCell.m in Sources */,
 				BACCE4622265C0ED00FDFAFD /* AppDelegate.m in Sources */,
 			);
