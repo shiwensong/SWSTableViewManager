@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lBm-OR-AjN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lBm-OR-AjN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,6 +13,10 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PcD-Ml-pGc"/>
+                        <viewControllerLayoutGuide type="bottom" id="i3d-QD-9vY"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="O8s-xt-bga">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -25,12 +28,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bim-A3-sXc" firstAttribute="trailing" secondItem="YQw-LU-c1d" secondAttribute="trailing" id="0IJ-4Y-Zai"/>
-                            <constraint firstItem="bim-A3-sXc" firstAttribute="bottom" secondItem="YQw-LU-c1d" secondAttribute="bottom" id="1JL-ID-HML"/>
-                            <constraint firstItem="YQw-LU-c1d" firstAttribute="leading" secondItem="bim-A3-sXc" secondAttribute="leading" id="9ze-5I-xBl"/>
-                            <constraint firstItem="YQw-LU-c1d" firstAttribute="top" secondItem="bim-A3-sXc" secondAttribute="top" id="kBF-0F-Qzc"/>
+                            <constraint firstAttribute="trailing" secondItem="YQw-LU-c1d" secondAttribute="trailing" id="0IJ-4Y-Zai"/>
+                            <constraint firstItem="i3d-QD-9vY" firstAttribute="top" secondItem="YQw-LU-c1d" secondAttribute="bottom" id="1JL-ID-HML"/>
+                            <constraint firstItem="YQw-LU-c1d" firstAttribute="leading" secondItem="O8s-xt-bga" secondAttribute="leading" id="9ze-5I-xBl"/>
+                            <constraint firstItem="YQw-LU-c1d" firstAttribute="top" secondItem="PcD-Ml-pGc" secondAttribute="bottom" id="kBF-0F-Qzc"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="bim-A3-sXc"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ne3-SY-7s8"/>
                     <connections>
@@ -63,6 +65,10 @@
         <scene sceneID="9UW-TH-EQj">
             <objects>
                 <viewController storyboardIdentifier="PrescriptionViewController" id="clk-Gb-K3U" customClass="PrescriptionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IIC-3r-36a"/>
+                        <viewControllerLayoutGuide type="bottom" id="27L-4U-rmd"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dSi-BD-wn2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,12 +84,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="o61-BE-zeL" firstAttribute="bottom" secondItem="gBI-xL-kxm" secondAttribute="bottom" id="1e8-C8-qnQ"/>
-                            <constraint firstItem="gBI-xL-kxm" firstAttribute="top" secondItem="o61-BE-zeL" secondAttribute="top" id="JWO-EB-EVH"/>
-                            <constraint firstItem="gBI-xL-kxm" firstAttribute="leading" secondItem="o61-BE-zeL" secondAttribute="leading" id="Sze-hF-88Q"/>
-                            <constraint firstItem="o61-BE-zeL" firstAttribute="trailing" secondItem="gBI-xL-kxm" secondAttribute="trailing" id="y6v-IX-viw"/>
+                            <constraint firstItem="27L-4U-rmd" firstAttribute="top" secondItem="gBI-xL-kxm" secondAttribute="bottom" id="1e8-C8-qnQ"/>
+                            <constraint firstItem="gBI-xL-kxm" firstAttribute="top" secondItem="IIC-3r-36a" secondAttribute="bottom" id="JWO-EB-EVH"/>
+                            <constraint firstItem="gBI-xL-kxm" firstAttribute="leading" secondItem="dSi-BD-wn2" secondAttribute="leading" id="Sze-hF-88Q"/>
+                            <constraint firstAttribute="trailing" secondItem="gBI-xL-kxm" secondAttribute="trailing" id="y6v-IX-viw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="o61-BE-zeL"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="gBI-xL-kxm" id="XrP-Qe-HHf"/>
@@ -97,6 +102,10 @@
         <scene sceneID="jjf-Zv-Okz">
             <objects>
                 <viewController storyboardIdentifier="NetViewController" id="wvg-8F-C4J" customClass="NetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QaD-B6-k9H"/>
+                        <viewControllerLayoutGuide type="bottom" id="53x-gu-YOg"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="20s-vn-rIP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,12 +117,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZCV-7s-Jmi" firstAttribute="bottom" secondItem="8V8-hD-Es8" secondAttribute="bottom" id="B6v-7v-CRe"/>
-                            <constraint firstItem="8V8-hD-Es8" firstAttribute="leading" secondItem="ZCV-7s-Jmi" secondAttribute="leading" id="G2A-OJ-yua"/>
-                            <constraint firstItem="ZCV-7s-Jmi" firstAttribute="trailing" secondItem="8V8-hD-Es8" secondAttribute="trailing" id="VK0-VC-vZT"/>
-                            <constraint firstItem="8V8-hD-Es8" firstAttribute="top" secondItem="ZCV-7s-Jmi" secondAttribute="top" id="XTb-Ku-rFn"/>
+                            <constraint firstItem="53x-gu-YOg" firstAttribute="top" secondItem="8V8-hD-Es8" secondAttribute="bottom" id="B6v-7v-CRe"/>
+                            <constraint firstItem="8V8-hD-Es8" firstAttribute="leading" secondItem="20s-vn-rIP" secondAttribute="leading" id="G2A-OJ-yua"/>
+                            <constraint firstAttribute="trailing" secondItem="8V8-hD-Es8" secondAttribute="trailing" id="VK0-VC-vZT"/>
+                            <constraint firstItem="8V8-hD-Es8" firstAttribute="top" secondItem="QaD-B6-k9H" secondAttribute="bottom" id="XTb-Ku-rFn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZCV-7s-Jmi"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="8V8-hD-Es8" id="ePG-Oh-vfn"/>
