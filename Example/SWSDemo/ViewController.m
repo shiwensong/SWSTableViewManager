@@ -64,10 +64,8 @@
 							}],
 					  ];
 	
-	TableViewManager *manager = [TableViewManager createTableViewManager];
+	TableViewManager *manager = [TableViewManager createTableViewManager:self tableView:self.tableView];
 	self.manager = manager;
-	self.tableView.delegate = manager;
-	self.tableView.dataSource = manager;
 	[TableViewManager registerClass:self.tableView withCellTypes:@[NSStringFromClass([UITableViewCell class])]];
 	
 	NSMutableArray *modelsArray = [NSMutableArray array];
