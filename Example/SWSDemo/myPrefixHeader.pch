@@ -1,0 +1,91 @@
+
+//
+//  myPrefixHeader.pch
+//  PhotoImage_Demo
+//
+//  Created by ShiWensong on 2017/6/23.
+//  Copyright © 2017年 施文松. All rights reserved.
+//
+
+#ifndef myPrefixHeader_pch
+#define myPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <SDAutoLayout/SDAutoLayout.h>
+#import <Masonry/Masonry.h>
+#import <AFNetworking/AFNetworking.h>
+#import <YYKit/YYKit.h>
+#import "TableViewManager/TableViewManager.h"
+#import "UIViewController+addFresh.h"
+
+#import <MJExtension/MJExtension.h>
+#import <UIImageView+WebCache.h>
+#import <ReactiveObjC/ReactiveObjC.h>
+
+#define WS(weakself)  __weak __typeof(&*self)weakself = self;
+
+//// 主线程
+#define dispatch_main_async_safe(block)\
+if ([NSThread isMainThread]) {\
+block();\
+} else {\
+dispatch_async(dispatch_get_main_queue(), block);\
+}
+
+/**
+  获取颜色
+  @param rgbValue 0x999999
+  @return UIColor
+  */
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define white_Color UIColorFromRGB(0xffffff) // 白色
+#define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define sws_randomColor random(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256)) //随机色
+
+
+// 打印
+#ifdef DEBUG
+#define NSLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+#else
+#define NSLog(format, ...)
+#endif
+
+
+// 宽高
+#define _kWidth [[UIScreen mainScreen] bounds].size.width
+#define _kHeight [[UIScreen mainScreen] bounds].size.height
+
+
+// 状态栏，navigationBar和TabBar的高度
+#define kSWSStatusBarHeight  	 [[UIApplication sharedApplication] statusBarFrame].size.height /// iPhone的状态栏高度
+#define kSWSNavgigationBarAndStatusHeight (kSWSNavigationBarHeight + kSWSStatusBarHeight)
+
+
+
+
+// 状态栏，navigationBar和TabBar的高度
+#define kSWSNavigationHeight  64.0
+#define kSWSNavigationBarHeight 44.0
+#define kSWSTabBarHeight        44.0
+#define kSWSStatusBarHeight     20
+#define kGlobalSpace 10.0  // 所有的间隙
+#define kGlobalCommonLabelHeight 20.0  // 所有的间隙
+#define kNotFooterHeight  0.000001;
+
+/// 检查OSStatus错误
+#define VStatus(err, errMsg, successMsg) {\
+if (err != noErr) {\
+NSLog(@"[ERROR:-%d] == %@", err, errMsg);\
+return;\
+}else{\
+NSLog(@"Success: %@", successMsg);\
+}\
+}while(0)
+
+#define StringFormat(format, ...) [NSString stringWithFormat:format,  ##__VA_ARGS__]
+
+
+
+#endif /* myPrefixHeader_pch */
