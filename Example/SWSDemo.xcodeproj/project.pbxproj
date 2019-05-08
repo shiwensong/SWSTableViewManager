@@ -63,6 +63,7 @@
 		BAA9FB55228279700030A8A1 /* TableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewManager.h; sourceTree = "<group>"; };
 		BAA9FB56228279700030A8A1 /* TableViewSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewSectionInfo.h; sourceTree = "<group>"; };
 		BAA9FB57228279700030A8A1 /* TableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewManager.m; sourceTree = "<group>"; };
+		BAA9FB7C2282A37A0030A8A1 /* SWSTableViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWSTableViewManager.h; sourceTree = "<group>"; };
 		BAB71E8B2277D939009021D1 /* NetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetCell.h; sourceTree = "<group>"; };
 		BAB71E8C2277D939009021D1 /* NetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetCell.m; sourceTree = "<group>"; };
 		BAB71E8D2277D939009021D1 /* NetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetCell.xib; sourceTree = "<group>"; };
@@ -191,16 +192,17 @@
 			path = Section2;
 			sourceTree = "<group>";
 		};
-		BAA9FB53228279700030A8A1 /* TableViewManager */ = {
+		BAA9FB53228279700030A8A1 /* SWSTableViewManager */ = {
 			isa = PBXGroup;
 			children = (
 				BAA9FB54228279700030A8A1 /* TableViewSectionInfo.m */,
 				BAA9FB55228279700030A8A1 /* TableViewManager.h */,
 				BAA9FB56228279700030A8A1 /* TableViewSectionInfo.h */,
 				BAA9FB57228279700030A8A1 /* TableViewManager.m */,
+				BAA9FB7C2282A37A0030A8A1 /* SWSTableViewManager.h */,
 			);
-			name = TableViewManager;
-			path = ../../Classes/TableViewManager;
+			name = SWSTableViewManager;
+			path = ../../Classes/SWSTableViewManager;
 			sourceTree = "<group>";
 		};
 		BAB71E882277D915009021D1 /* Net */ = {
@@ -252,7 +254,7 @@
 		BACCE45F2265C0ED00FDFAFD /* SWSDemo */ = {
 			isa = PBXGroup;
 			children = (
-				BAA9FB53228279700030A8A1 /* TableViewManager */,
+				BAA9FB53228279700030A8A1 /* SWSTableViewManager */,
 				BAA80C24227E7A2D009B14FE /* 处方界面 */,
 				BAB71E882277D915009021D1 /* Net */,
 				BA8F2EA92266B3280008BFED /* Cell */,
