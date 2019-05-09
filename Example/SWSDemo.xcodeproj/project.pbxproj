@@ -23,6 +23,8 @@
 		BAA80C46227E9249009B14FE /* ContentwCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA80C44227E9249009B14FE /* ContentwCell.xib */; };
 		BAA9FB58228279700030A8A1 /* TableViewSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9FB54228279700030A8A1 /* TableViewSectionInfo.m */; };
 		BAA9FB59228279700030A8A1 /* TableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9FB57228279700030A8A1 /* TableViewManager.m */; };
+		BAA9FB802282B7070030A8A1 /* BaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9FB7F2282B7070030A8A1 /* BaseViewModel.m */; };
+		BAA9FB852282B7A10030A8A1 /* NetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9FB842282B7A10030A8A1 /* NetViewModel.m */; };
 		BAB71E8E2277D939009021D1 /* NetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB71E8C2277D939009021D1 /* NetCell.m */; };
 		BAB71E8F2277D939009021D1 /* NetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB71E8D2277D939009021D1 /* NetCell.xib */; };
 		BAB71E922277DC2B009021D1 /* NetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB71E912277DC2B009021D1 /* NetModel.m */; };
@@ -64,6 +66,10 @@
 		BAA9FB56228279700030A8A1 /* TableViewSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewSectionInfo.h; sourceTree = "<group>"; };
 		BAA9FB57228279700030A8A1 /* TableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewManager.m; sourceTree = "<group>"; };
 		BAA9FB7C2282A37A0030A8A1 /* SWSTableViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWSTableViewManager.h; sourceTree = "<group>"; };
+		BAA9FB7E2282B7070030A8A1 /* BaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewModel.h; sourceTree = "<group>"; };
+		BAA9FB7F2282B7070030A8A1 /* BaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewModel.m; sourceTree = "<group>"; };
+		BAA9FB832282B7A10030A8A1 /* NetViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetViewModel.h; sourceTree = "<group>"; };
+		BAA9FB842282B7A10030A8A1 /* NetViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetViewModel.m; sourceTree = "<group>"; };
 		BAB71E8B2277D939009021D1 /* NetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetCell.h; sourceTree = "<group>"; };
 		BAB71E8C2277D939009021D1 /* NetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetCell.m; sourceTree = "<group>"; };
 		BAB71E8D2277D939009021D1 /* NetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetCell.xib; sourceTree = "<group>"; };
@@ -205,9 +211,28 @@
 			path = ../../Classes/SWSTableViewManager;
 			sourceTree = "<group>";
 		};
+		BAA9FB7D2282B6F20030A8A1 /* BaseViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BAA9FB7E2282B7070030A8A1 /* BaseViewModel.h */,
+				BAA9FB7F2282B7070030A8A1 /* BaseViewModel.m */,
+			);
+			path = BaseViewModel;
+			sourceTree = "<group>";
+		};
+		BAA9FB822282B7930030A8A1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BAA9FB832282B7A10030A8A1 /* NetViewModel.h */,
+				BAA9FB842282B7A10030A8A1 /* NetViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		BAB71E882277D915009021D1 /* Net */ = {
 			isa = PBXGroup;
 			children = (
+				BAA9FB822282B7930030A8A1 /* ViewModel */,
 				BAB71E8A2277D926009021D1 /* Model */,
 				BAB71E892277D921009021D1 /* Cell */,
 			);
@@ -254,6 +279,7 @@
 		BACCE45F2265C0ED00FDFAFD /* SWSDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BAA9FB7D2282B6F20030A8A1 /* BaseViewModel */,
 				BAA9FB53228279700030A8A1 /* SWSTableViewManager */,
 				BAA80C24227E7A2D009B14FE /* 处方界面 */,
 				BAB71E882277D915009021D1 /* Net */,
@@ -409,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA8F2EAD2266B3450008BFED /* HeaderCell.m in Sources */,
+				BAA9FB852282B7A10030A8A1 /* NetViewModel.m in Sources */,
 				BAA80C3F227E8C00009B14FE /* InfoCell.m in Sources */,
 				BAA80C39227E85A2009B14FE /* PresAddressCell.m in Sources */,
 				BACCE4832265CF4300FDFAFD /* NetViewController.m in Sources */,
@@ -421,6 +448,7 @@
 				BAA80C33227E829C009B14FE /* PresSectionHeaderCell.m in Sources */,
 				BACCE4802265CE7100FDFAFD /* UIViewController+addFresh.m in Sources */,
 				BAB71E952277E97D009021D1 /* InputViewController.m in Sources */,
+				BAA9FB802282B7070030A8A1 /* BaseViewModel.m in Sources */,
 				BACCE4702265C0EF00FDFAFD /* main.m in Sources */,
 				BAA9FB59228279700030A8A1 /* TableViewManager.m in Sources */,
 				BAB71E8E2277D939009021D1 /* NetCell.m in Sources */,

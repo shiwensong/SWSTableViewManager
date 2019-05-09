@@ -11,6 +11,8 @@
 #import "ViewController.h"
 #import "NetCell.h"
 #import "NetModel.h"
+#import "NetViewModel.h"
+
 
 @interface NetViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -71,13 +73,36 @@
 	
 	TableViewSectionInfo *section = [TableViewSectionInfo new];
 	self.section = section;
+	self.tableManager.groupSectionArray = [NSMutableArray arrayWithObjects:section0, section, nil];
 	
+	
+//	[self addFreshPull:self.tableView withBlock:^(id info) {
+//		ws.isHeader = YES;
+//		[ws getList];
+//	}];
+	NetViewModel *viewModel = [[NetViewModel alloc] initWithVC:self withTableView:self.tableView];
 	[self addFreshPull:self.tableView withBlock:^(id info) {
-		ws.isHeader = YES;
-		[ws getList];
+		viewModel.isHeader = YES;
+		[viewModel.netCommand execute:@""];
 	}];
 	
-	self.tableManager.groupSectionArray = [NSMutableArray arrayWithObjects:section0, section, nil];
+	[[viewModel.netCommand.executionSignals.switchToLatest takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSArray *x) {
+//		NSLog(@"x == %@", x);
+		[ws.section.subRowsArray removeAllObjects];
+		ws.section.subRowsArray = [NSMutableArray arrayWithArray:x];
+//		if (x.count >= 20 && ws.isHeader) {
+//			[ws addFooterFresh:ws.tableView withBlock:^(id info) {
+//				viewModel.isHeader = NO;
+//				[viewModel.netCommand execute:@""];
+//			}];
+//		}
+		[ws.tableView reloadData];
+//		if (ws.isHeader) {
+//			[ws headerEndFreshPull];
+//		}else{
+//			[ws footerEndFreshPull];
+//		}
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
