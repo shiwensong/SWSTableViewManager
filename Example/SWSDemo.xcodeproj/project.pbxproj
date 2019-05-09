@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5CEC09C87F15C4E9CD2D3FD0 /* Pods_SWSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE35ED1DBD12265D79CC5B26 /* Pods_SWSDemo.framework */; };
+		BA4D3FBC2283F933009626D5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4D3FBB2283F933009626D5 /* TestViewController.m */; };
 		BA8F2EAD2266B3450008BFED /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8F2EAB2266B3450008BFED /* HeaderCell.m */; };
 		BA8F2EAE2266B3450008BFED /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8F2EAC2266B3450008BFED /* HeaderCell.xib */; };
 		BAA80C2A227E7A70009B14FE /* PrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA80C29227E7A70009B14FE /* PrescriptionViewController.m */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		1A05CCB555F5050D1529612C /* Pods-SWSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWSDemo.debug.xcconfig"; path = "Target Support Files/Pods-SWSDemo/Pods-SWSDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		BA4D3FBA2283F933009626D5 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		BA4D3FBB2283F933009626D5 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		BA8F2EAA2266B3450008BFED /* HeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
 		BA8F2EAB2266B3450008BFED /* HeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
 		BA8F2EAC2266B3450008BFED /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
@@ -114,6 +117,23 @@
 				DE35ED1DBD12265D79CC5B26 /* Pods_SWSDemo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA4D3FB82283F904009626D5 /* 多接口测试 */ = {
+			isa = PBXGroup;
+			children = (
+				BA4D3FB92283F916009626D5 /* ViewController */,
+			);
+			path = "多接口测试";
+			sourceTree = "<group>";
+		};
+		BA4D3FB92283F916009626D5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BA4D3FBA2283F933009626D5 /* TestViewController.h */,
+				BA4D3FBB2283F933009626D5 /* TestViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		BA8F2EA92266B3280008BFED /* Cell */ = {
@@ -279,6 +299,7 @@
 		BACCE45F2265C0ED00FDFAFD /* SWSDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BA4D3FB82283F904009626D5 /* 多接口测试 */,
 				BAA9FB7D2282B6F20030A8A1 /* BaseViewModel */,
 				BAA9FB53228279700030A8A1 /* SWSTableViewManager */,
 				BAA80C24227E7A2D009B14FE /* 处方界面 */,
@@ -448,6 +469,7 @@
 				BAA80C33227E829C009B14FE /* PresSectionHeaderCell.m in Sources */,
 				BACCE4802265CE7100FDFAFD /* UIViewController+addFresh.m in Sources */,
 				BAB71E952277E97D009021D1 /* InputViewController.m in Sources */,
+				BA4D3FBC2283F933009626D5 /* TestViewController.m in Sources */,
 				BAA9FB802282B7070030A8A1 /* BaseViewModel.m in Sources */,
 				BACCE4702265C0EF00FDFAFD /* main.m in Sources */,
 				BAA9FB59228279700030A8A1 /* TableViewManager.m in Sources */,

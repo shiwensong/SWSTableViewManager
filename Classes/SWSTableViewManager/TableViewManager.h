@@ -158,36 +158,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)registerHeaderFooterViewNib:(UITableView *)tableView withHeaderFooterViewNibTypes:(NSArray *)headerFooterViewNibTypes;
 
 
-/**
- 批量注册cell
- 
- @param cellTypes cellClass数组
- */
-- (void)registerClassWithCellTypes:(NSArray *)cellTypes;
-
-/**
- 批量注册nib cell
- 
- @param cellNibTypes nib cell数组
- */
-- (void)registerNibWithNibTypes:(NSArray *)cellNibTypes;
-
-/**
- 批量注册headerFooterView
- 
- @param headerFooterViewTypes headerFooterViewClass数组
- */
-- (void)registerHeaderFooterViewWithClassTypes:(NSArray *)headerFooterViewTypes;
-
-/**
- 批量注册nib headerFooterView
- 
- @param headerFooterViewNibTypes headerFooterView cell数组
- */
-- (void)registerHeaderFooterViewNibWithNibTypes:(NSArray *)headerFooterViewNibTypes;
-
-
-
 @property (strong, nonatomic) id tableViewManagerValue0;
 @property (strong, nonatomic) id tableViewManagerValue1;
 @property (strong, nonatomic) id tableViewManagerValue2;

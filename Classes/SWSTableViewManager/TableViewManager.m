@@ -358,59 +358,6 @@ static char const * const kTableManagerKey = "kTableManagerKey";
 	}
 }
 
-#pragma mark - 使用self.tableManage注册cell
-
-/**
- 批量注册cell
- 
- @param cellTypes cellClass数组
- */
-- (void)registerClassWithCellTypes:(NSArray *)cellTypes{
-	NSAssert(!self.tableView, @"tableView不能为空,请先调用createTableViewManager: tableView:方法初始化!");
-	for (NSString *cellName in cellTypes) {
-		[self.tableView registerClass:NSClassFromString(cellName) forCellReuseIdentifier:cellName];
-	}
-}
-
-/**
- 批量注册nib cell
- 
- @param cellNibTypes nib cell数组
- */
-- (void)registerNibWithNibTypes:(NSArray *)cellNibTypes{
-	NSAssert(!self.tableView, @"tableView不能为空,请先调用createTableViewManager: tableView:方法初始化!");
-	for (NSString *cellNibName in cellNibTypes) {
-		[self.tableView registerNib:[UINib nibWithNibName:cellNibName bundle:nil] forCellReuseIdentifier:cellNibName];
-	}
-}
-
-/**
- 批量注册headerFooterView
- 
- @param headerFooterViewTypes headerFooterViewClass数组
- */
-- (void)registerHeaderFooterViewWithClassTypes:(NSArray *)headerFooterViewTypes{
-	NSAssert(!self.tableView, @"tableView不能为空,请先调用createTableViewManager: tableView:方法初始化!");
-	for (NSString *headerFooterViewNibName in headerFooterViewTypes) {
-		[self.tableView registerClass:NSClassFromString(headerFooterViewNibName) forHeaderFooterViewReuseIdentifier:headerFooterViewNibName];
-	}
-}
-
-/**
- 批量注册nib headerFooterView
- 
- @param headerFooterViewNibTypes headerFooterView cell数组
- */
-- (void)registerHeaderFooterViewNibWithNibTypes:(NSArray *)headerFooterViewNibTypes{
-	NSAssert(!self.tableView, @"tableView不能为空,请先调用createTableViewManager: tableView:方法初始化!");
-	for (NSString *headerFooterViewNibName in headerFooterViewNibTypes) {
-		[self.tableView registerNib:[UINib nibWithNibName:headerFooterViewNibName bundle:nil] forHeaderFooterViewReuseIdentifier:headerFooterViewNibName];
-	}
-}
-
-
-
-
 @end
 
 
