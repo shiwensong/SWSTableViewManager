@@ -10,6 +10,7 @@
 #import "NetViewController.h"
 #import "InputViewController.h"
 #import "PrescriptionViewController.h"
+#import "TestViewController.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -89,8 +90,13 @@
 			row.didSelectBlock = ^(UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull currentSectionInfo, TableViewRowInfo * _Nonnull currentRowInfo) {
 //				UITableViewCell *cell = [tableViewCurrent cellForRowAtIndexPath:indexPathCurrent];
 				NSLog(@"点击了 == %@", currentRowInfo.rowInfoValue0);
-				ViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
-				[ws.navigationController pushViewController:vc animated:YES];
+				if ([currentRowInfo.rowInfoValue0 isEqualToString:@"处方记录"]) {
+					ViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
+					[ws.navigationController pushViewController:vc animated:YES];
+				}else if([currentRowInfo.rowInfoValue0 isEqualToString:@"发布通知"]){
+					TestViewController *test = [TestViewController new];
+					[ws.navigationController pushViewController:test animated:YES];
+				}
 			};
 			[section.subRowsArray addObject:row];
 		}
@@ -99,12 +105,59 @@
 	
 	
 	manager.groupSectionArray = modelsArray;
+	
+	[self createSubject];
 }
 
 -(void)dealloc
 {
 	NSLog(@"内存释放--%@",NSStringFromClass([self class]) );
 	[[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)createSubject{
+//	RACSignal *signal = [[RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+//
+//		[subscriber sendNext:@"shi"];
+//		[subscriber sendNext:@"wen"];
+//		[subscriber sendNext:@"song"];
+//		[subscriber sendCompleted];
+//		return nil;
+//	}] replay];
+	
+//	RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+//
+//		[subscriber sendNext:@"shi"];
+//		[subscriber sendNext:@"wen"];
+//		[subscriber sendNext:@"song"];
+//		return nil;
+//	}];
+
+	
+//	[signal subscribeNext:^(id  _Nullable x) {
+//		NSLog(@"订阅者1 == %@", x);
+//	}];
+//
+//	[signal subscribeNext:^(id  _Nullable x) {
+//		NSLog(@"订阅者2 == %@", x);
+//	}];
+	
+//	RACSubject *subject = [RACSubject subject];
+//
+//	[subject subscribeNext:^(id  _Nullable x) {
+//		NSLog(@"订阅者1 == %@", x);
+//	}];
+//
+//	 [subject subscribeNext:^(id  _Nullable x) {
+//		NSLog(@"订阅者2 == %@", x);
+//	}];
+//
+//	[subject sendNext:@"shi"];
+//	[subject sendNext:@"wen"];
+//	[subject sendNext:@"song"];
+	
+	
+	
 }
 
 @end

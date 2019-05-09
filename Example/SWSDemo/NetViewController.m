@@ -20,6 +20,7 @@
 @property (assign, nonatomic) NSInteger page;
 @property (strong, nonatomic) TableViewSectionInfo *section;
 //@property (strong, nonatomic) TableViewManager *manager;
+@property (strong, nonatomic) NetViewModel *viewModel;
 @end
 
 @implementation NetViewController
@@ -37,6 +38,9 @@
 	[TableViewManager registerNib:self.tableView withCellNibTypes:@[NSStringFromClass([NetCell class])]];
 	
 	[TableViewManager createTableViewManager:self tableView:self.tableView];
+//	[self.tableManager registerClassWithCellTypes:@[NSStringFromClass([UITableViewCell class])]];
+//	[self.tableManager registerClassWithCellTypes:@[NSStringFromClass([NetCell class])]];
+//	[self.tableManager registerClassWithCellTypes:@[NSStringFromClass([HeaderCell class])]];
 	
 	self.tableManager.didSelectBlock = ^(UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull currentSectionInfo, TableViewRowInfo * _Nonnull currentRowInfo) {
 //		if (indexPathCurrent.section == 0) {
@@ -81,9 +85,10 @@
 //		[ws getList];
 //	}];
 	NetViewModel *viewModel = [[NetViewModel alloc] initWithVC:self withTableView:self.tableView];
+	self.viewModel = viewModel;
 	[self addFreshPull:self.tableView withBlock:^(id info) {
 		viewModel.isHeader = YES;
-		[viewModel.netCommand execute:@""];
+		[viewModel.netCommand execute:@{@"name" : @"shi"}];
 	}];
 	
 	[[viewModel.netCommand.executionSignals.switchToLatest takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSArray *x) {
@@ -103,6 +108,18 @@
 //			[ws footerEndFreshPull];
 //		}
 	}];
+	
+	
+	[[viewModel.netCommand.executing skip:1] subscribeNext:^(id  _Nullable x) {
+		if ([x isEqualToNumber:@(YES)]) {
+			NSLog(@"正在加载中...");
+			[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		}else{
+			[MBProgressHUD hideHUDForView:self.view animated:YES];
+			NSLog(@"已经加载完成!");
+		}
+	}];
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated{

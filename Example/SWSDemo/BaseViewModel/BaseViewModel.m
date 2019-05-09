@@ -8,6 +8,11 @@
 
 #import "BaseViewModel.h"
 
+@interface BaseViewModel()
+
+
+@end
+
 @implementation BaseViewModel
 
 - (instancetype)initWithVC:(UIViewController *)viewController withTableView:(UITableView *)tableView{
@@ -22,6 +27,20 @@
 		_pageSize = 20;
 	}
 	return self;
+}
+- (void)headerAndFooterEndFresh{
+	if (self.isHeader) {
+		[self.viewController headerEndFreshPull];
+	}else{
+		[self.viewController footerEndFreshPull];
+	}
+}
+
+
+-(void)dealloc
+{
+	NSLog(@"内存释放--%@",NSStringFromClass([self class]) );
+	[[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end

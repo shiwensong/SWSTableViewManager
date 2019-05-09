@@ -17,7 +17,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <YYKit/YYKit.h>
 #import "SWSTableViewManager.h"
-
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "UIViewController+addFresh.h"
 
 #import <MJExtension/MJExtension.h>
