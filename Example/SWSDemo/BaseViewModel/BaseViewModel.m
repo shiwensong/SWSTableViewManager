@@ -40,7 +40,6 @@
 -(void)dealloc
 {
 	NSLog(@"内存释放--%@",NSStringFromClass([self class]) );
-	[[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end

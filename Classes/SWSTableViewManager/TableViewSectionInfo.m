@@ -16,8 +16,8 @@
 {
 	self = [super init];
 	if (self) {
-		_headerViewHeight = 0.00001;
-		_footerViewHeight = 0.00001;
+		_headerViewHeight = 0.000001;
+		_footerViewHeight = 0.000001;
 	}
 	return self;
 }
