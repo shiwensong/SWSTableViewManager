@@ -81,6 +81,7 @@
 			TableViewRowInfo *row = [TableViewRowInfo new];
 			row.cellClass = NSStringFromClass([UITableViewCell class]);
 			row.rowInfoObj0.infoValue = dict[@"title"];
+			row.rowInfoObj0.valueDescription = @"施文松";
 			row.setCellValueBlock = ^(UITableViewCell * _Nonnull currentCell, UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 				currentCell.textLabel.text = dict[@"title"];
 			};

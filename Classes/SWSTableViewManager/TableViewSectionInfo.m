@@ -367,4 +367,13 @@
 
 @implementation TableValueModel
 
+- (NSString *)description{
+	NSString *noteStr = @"";
+	if (self.noteString.length > 0) {
+		noteStr = [NSString stringWithFormat:@"\nnoteString: %@", self.noteString];
+	}
+	NSString *str = [NSString stringWithFormat:@"infoValue: %@ \nvalueDescription: %@%@", self.infoValue, self.valueDescription, noteStr];
+	return str;
+}
+
 @end
