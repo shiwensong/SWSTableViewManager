@@ -9,6 +9,7 @@
 static char const *const kTableManagerKey = "kTableManagerKey";
 
 #import "TableViewManager.h"
+#import<objc/runtime.h>
 
 @interface TableViewManager ()
 
