@@ -80,7 +80,7 @@
 			NSDictionary *dict = array[j];
 			TableViewRowInfo *row = [TableViewRowInfo new];
 			row.cellClass = NSStringFromClass([UITableViewCell class]);
-			row.rowInfoValue0 = dict[@"title"];
+			row.rowInfoObj0.infoValue = dict[@"title"];
 			row.setCellValueBlock = ^(UITableViewCell * _Nonnull currentCell, UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 				currentCell.textLabel.text = dict[@"title"];
 			};
@@ -89,11 +89,11 @@
 			};
 			row.didSelectBlock = ^(UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull currentSectionInfo, TableViewRowInfo * _Nonnull currentRowInfo) {
 //				UITableViewCell *cell = [tableViewCurrent cellForRowAtIndexPath:indexPathCurrent];
-				NSLog(@"点击了 == %@", currentRowInfo.rowInfoValue0);
-				if ([currentRowInfo.rowInfoValue0 isEqualToString:@"处方记录"]) {
+				NSLog(@"点击了 == %@", currentRowInfo.rowInfoObj0.infoValue);
+				if ([currentRowInfo.rowInfoObj0.infoValue isEqualToString:@"处方记录"]) {
 					ViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
 					[ws.navigationController pushViewController:vc animated:YES];
-				}else if([currentRowInfo.rowInfoValue0 isEqualToString:@"发布通知"]){
+				}else if([currentRowInfo.rowInfoObj0.infoValue isEqualToString:@"发布通知"]){
 					TestViewController *test = [TestViewController new];
 					[ws.navigationController pushViewController:test animated:YES];
 				}

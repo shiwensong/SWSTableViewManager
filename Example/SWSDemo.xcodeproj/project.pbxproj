@@ -221,11 +221,11 @@
 		BAA9FB53228279700030A8A1 /* SWSTableViewManager */ = {
 			isa = PBXGroup;
 			children = (
-				BAA9FB54228279700030A8A1 /* TableViewSectionInfo.m */,
-				BAA9FB55228279700030A8A1 /* TableViewManager.h */,
-				BAA9FB56228279700030A8A1 /* TableViewSectionInfo.h */,
-				BAA9FB57228279700030A8A1 /* TableViewManager.m */,
 				BAA9FB7C2282A37A0030A8A1 /* SWSTableViewManager.h */,
+				BAA9FB55228279700030A8A1 /* TableViewManager.h */,
+				BAA9FB57228279700030A8A1 /* TableViewManager.m */,
+				BAA9FB56228279700030A8A1 /* TableViewSectionInfo.h */,
+				BAA9FB54228279700030A8A1 /* TableViewSectionInfo.m */,
 			);
 			name = SWSTableViewManager;
 			path = ../../Classes/SWSTableViewManager;

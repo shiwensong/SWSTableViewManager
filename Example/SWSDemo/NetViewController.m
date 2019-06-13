@@ -46,12 +46,12 @@
 //		if (indexPathCurrent.section == 0) {
 //			NSLog(@"点击了headerCell");
 //		}else if(indexPathCurrent.section == 1){
-//			NSLog(@"点击了姓名cell == %@", currentRowInfo.rowInfoValue0);
+//			NSLog(@"点击了姓名cell == %@", currentRowInfo.rowInfoObj0.infoValue);
 //		}
 		if ([currentRowInfo.cellClass isEqualToString:NSStringFromClass([HeaderCell class])]) {
 			NSLog(@"点击了headerCell");
 		}else if ([currentRowInfo.cellClass isEqualToString:NSStringFromClass([UITableViewCell class])]){
-			NSLog(@"点击了姓名cell == %@", currentRowInfo.rowInfoValue0[@"user"][@"nickname"]);
+			NSLog(@"点击了姓名cell == %@", currentRowInfo.rowInfoObj0.infoValue[@"user"][@"nickname"]);
 			ViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ViewController"];
 			[ws.navigationController pushViewController:vc animated:YES];
 		}
@@ -166,13 +166,13 @@
 			
 			TableViewRowInfo *info = [TableViewRowInfo new];
 			info.cellClass = NSStringFromClass([NetCell class]);
-			info.rowInfoValue0 = netModel;
+			info.rowInfoObj0.infoValue = netModel;
 			info.setCellValueBlock = ^(UITableViewCell * _Nonnull currentCell, UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 				NetCell *netCell = (NetCell *)currentCell;
-				netCell.model = rowInfo.rowInfoValue0;
+				netCell.model = rowInfo.rowInfoObj0.infoValue;
 			};
 			info.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull currentSectionInfo, TableViewRowInfo * _Nonnull currentRowInfo) {
-				return [tableViewCurrent cellHeightForIndexPath:indexPathCurrent model:currentRowInfo.rowInfoValue0 keyPath:@"model" cellClass:[NetCell class] contentViewWidth:_kWidth];
+				return [tableViewCurrent cellHeightForIndexPath:indexPathCurrent model:currentRowInfo.rowInfoObj0.infoValue keyPath:@"model" cellClass:[NetCell class] contentViewWidth:_kWidth];
 			};
 //			info.didSelectBlock = ^(UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull currentSectionInfo, TableViewRowInfo * _Nonnull currentRowInfo) {
 //				NSLog(@"点击了cell");
