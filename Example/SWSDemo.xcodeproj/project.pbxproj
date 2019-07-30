@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5CEC09C87F15C4E9CD2D3FD0 /* Pods_SWSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE35ED1DBD12265D79CC5B26 /* Pods_SWSDemo.framework */; };
+		90F9A90A22F00993000DE7C0 /* SWSAboutUsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F9A90722F00992000DE7C0 /* SWSAboutUsCell.m */; };
+		90F9A90B22F00993000DE7C0 /* SWSAboutUsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F9A90822F00993000DE7C0 /* SWSAboutUsCell.xib */; };
 		BA4D3FBC2283F933009626D5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4D3FBB2283F933009626D5 /* TestViewController.m */; };
 		BA8F2EAD2266B3450008BFED /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8F2EAB2266B3450008BFED /* HeaderCell.m */; };
 		BA8F2EAE2266B3450008BFED /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8F2EAC2266B3450008BFED /* HeaderCell.xib */; };
@@ -42,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		1A05CCB555F5050D1529612C /* Pods-SWSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWSDemo.debug.xcconfig"; path = "Target Support Files/Pods-SWSDemo/Pods-SWSDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		90F9A90722F00992000DE7C0 /* SWSAboutUsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSAboutUsCell.m; sourceTree = "<group>"; };
+		90F9A90822F00993000DE7C0 /* SWSAboutUsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWSAboutUsCell.xib; sourceTree = "<group>"; };
+		90F9A90922F00993000DE7C0 /* SWSAboutUsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSAboutUsCell.h; sourceTree = "<group>"; };
 		BA4D3FBA2283F933009626D5 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		BA4D3FBB2283F933009626D5 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		BA8F2EAA2266B3450008BFED /* HeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
@@ -139,6 +144,9 @@
 		BA8F2EA92266B3280008BFED /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				90F9A90922F00993000DE7C0 /* SWSAboutUsCell.h */,
+				90F9A90722F00992000DE7C0 /* SWSAboutUsCell.m */,
+				90F9A90822F00993000DE7C0 /* SWSAboutUsCell.xib */,
 				BA8F2EAA2266B3450008BFED /* HeaderCell.h */,
 				BA8F2EAB2266B3450008BFED /* HeaderCell.m */,
 				BA8F2EAC2266B3450008BFED /* HeaderCell.xib */,
@@ -402,6 +410,7 @@
 				BAA80C3A227E85A2009B14FE /* PresAddressCell.xib in Resources */,
 				BACCE46D2265C0EF00FDFAFD /* LaunchScreen.storyboard in Resources */,
 				BACCE46A2265C0EF00FDFAFD /* Assets.xcassets in Resources */,
+				90F9A90B22F00993000DE7C0 /* SWSAboutUsCell.xib in Resources */,
 				BACCE4682265C0ED00FDFAFD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +468,7 @@
 				BAA9FB852282B7A10030A8A1 /* NetViewModel.m in Sources */,
 				BAA80C3F227E8C00009B14FE /* InfoCell.m in Sources */,
 				BAA80C39227E85A2009B14FE /* PresAddressCell.m in Sources */,
+				90F9A90A22F00993000DE7C0 /* SWSAboutUsCell.m in Sources */,
 				BACCE4832265CF4300FDFAFD /* NetViewController.m in Sources */,
 				BACCE4652265C0ED00FDFAFD /* ViewController.m in Sources */,
 				BAA9FB58228279700030A8A1 /* TableViewSectionInfo.m in Sources */,

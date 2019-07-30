@@ -11,6 +11,7 @@
 #import "InputViewController.h"
 #import "PrescriptionViewController.h"
 #import "TestViewController.h"
+#import "SWSAboutUsCell.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -36,7 +37,7 @@
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"输入" style:UIBarButtonItemStyleDone target:self action:@selector(leftBarButtonItemOnClick:)];
 
 	self.tableView.separatorInset = UIEdgeInsetsZero;
-	
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	WS(ws);
 	NSArray *list = @[
 					  @[@{
@@ -68,6 +69,7 @@
 	TableViewManager *manager = [TableViewManager createTableViewManager:self tableView:self.tableView];
 	self.manager = manager;
 	[TableViewManager registerClass:self.tableView withCellTypes:@[NSStringFromClass([UITableViewCell class])]];
+    [TableViewManager registerNib:self.tableView withCellNibTypes:@[NSStringFromClass([SWSAboutUsCell class])]];
 	
 	NSMutableArray *modelsArray = [NSMutableArray array];
 	for(int i = 0; i < list.count; i ++){
@@ -103,7 +105,26 @@
 		}
 		[modelsArray addObject:section];
 	}
-	
+    
+    
+    TableViewSectionInfo *section11 = [TableViewSectionInfo new];
+    section11.headerHeightBlock = ^CGFloat(UITableView * _Nonnull tableViewCurrent, NSInteger currentSection, TableViewSectionInfo * _Nonnull currentSectionInfo) {
+        return 10;
+    };
+    
+    TableViewRowInfo *row0 = [TableViewRowInfo new];
+    row0.cellClass = NSStringFromClass([SWSAboutUsCell class]);
+    row0.setCellValueBlock = ^(SWSAboutUsCell  *cell, UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
+        
+    };
+    row0.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
+        return [tableView cellHeightForIndexPath:indexPath cellClass:[SWSAboutUsCell class] cellContentViewWidth:_kWidth cellDataSetting:^(UITableViewCell *cell) {
+            
+        }];
+    };
+    [section11.subRowsArray addObject:row0];
+    [modelsArray addObject:section11];
+
 	
 	manager.groupSectionArray = modelsArray;
 	
