@@ -88,7 +88,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
                 }
             }
             cell.tintColor = [UIColor colorWithRed:0.07 green:0.62 blue:0.30 alpha:1.00];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }
