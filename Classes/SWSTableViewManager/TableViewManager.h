@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
  分组信息
  */
 @property (strong, nonatomic) NSMutableArray *groupSectionArray;
+/**
+ titles
+ */
+@property (strong, nonatomic) NSArray *titles;
 
 /**
  添加type字段
@@ -42,6 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (copy, nonatomic) CGFloat (^ cellHeightBlock)(UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
 
+/**
+ titles点击事件
+ */
+@property (copy, nonatomic) NSInteger (^ sectionForSectionIndexTitleBlock)(UITableView *tableView, NSString *title, NSInteger index);
 /**
  cell的点击事件
  */

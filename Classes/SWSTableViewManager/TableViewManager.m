@@ -96,6 +96,24 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     return nil;
 }
 
+
+- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    if (self.titles.count > 0) {
+        return self.titles;
+    }
+    return nil;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    
+    if (self.sectionForSectionIndexTitleBlock) {
+        return self.sectionForSectionIndexTitleBlock(tableView, title, index);
+    } else {
+        // 一种实现方式都没有
+        return index;
+    }
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -64,9 +64,58 @@
 						@{
 							@"title" : @"设置",
 							}],
+                      @[
+                        @{
+                            @"title" : @"发布通知",
+                            },
+                        @{
+                            @"title" : @"执业点管理",
+                            },
+                        @{
+                            @"title" : @"我的名片",
+                            },
+                        @{
+                            @"title" : @"我的问卷",
+                            },
+                        @{
+                            @"title" : @"我的收藏",
+                            },
+                        @{
+                            @"title" : @"发布通知",
+                            },
+                        @{
+                            @"title" : @"执业点管理",
+                            },
+                        @{
+                            @"title" : @"我的名片",
+                            },
+                        @{
+                            @"title" : @"我的问卷",
+                            },
+                        @{
+                            @"title" : @"我的收藏",
+                            },
+                        @{
+                            @"title" : @"发布通知",
+                            },
+                        @{
+                            @"title" : @"执业点管理",
+                            },
+                        @{
+                            @"title" : @"我的名片",
+                            },
+                        @{
+                            @"title" : @"我的问卷",
+                            },
+                        @{
+                            @"title" : @"我的收藏",
+                            }
+                        ],
 					  ];
 	
 	TableViewManager *manager = [TableViewManager createTableViewManager:self tableView:self.tableView];
+    manager.titles = @[@"1", @"2"];
+    self.tableView.sectionIndexColor = [UIColor greenColor];
 	self.manager = manager;
 	[TableViewManager registerClass:self.tableView withCellTypes:@[NSStringFromClass([UITableViewCell class])]];
     [TableViewManager registerNib:self.tableView withCellNibTypes:@[NSStringFromClass([SWSAboutUsCell class])]];
