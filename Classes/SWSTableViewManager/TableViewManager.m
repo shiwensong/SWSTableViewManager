@@ -7,6 +7,7 @@
 //
 
 static char const *const kTableManagerKey = "kTableManagerKey";
+#define kNotFooterHeight  0.000001;
 
 #import "TableViewManager.h"
 #import<objc/runtime.h>
