@@ -22,6 +22,50 @@
 @implementation ViewController
 
 - (void)rightBarButtonItemOnClick:(UIBarButtonItem *)item{
+    
+    /// section的隐藏
+//    int index = rand() % 3;
+//    NSLog(@"index == %d", index);
+//    [self.tableManager.groupSectionArray setValue:@(NO) forKeyPath:@"hidden"];
+//    TableViewSectionInfo *sectionInfo = self.tableManager.groupSectionArray[index];
+//    sectionInfo.hidden = YES;
+    
+//     rowInfo的隐藏
+//    int index = rand() % 4;
+//    NSLog(@"index == %d", index);
+//    TableViewSectionInfo *sectionInfo = self.tableManager.groupSectionArray[1];
+//    [sectionInfo.subRowsArray setValue:@(NO) forKeyPath:@"hidden"];
+//    TableViewRowInfo *rowInfo = sectionInfo.subRowsArray[index];
+//    rowInfo.hidden = YES;
+//    [self.tableView reloadData];
+    
+//    // 查找section
+//    TableViewSectionInfo *sectionInfo = [self.tableManager getSectionInfoWithIdentifier:@"呵呵呵"];
+//    NSLog(@"sectionInfo == %@", sectionInfo);
+//    TableViewRowInfo *rowInfo = [self.tableManager getRowInfoWithIdentifier:@"哈哈哈" withSectionInfo:sectionInfo];
+//    NSLog(@"rowInfo == %@", rowInfo);
+//    return;
+    
+//    删除一行然后刷新
+    //    [self.tableManager.groupSectionArray removeObjectAtIndex:1];
+    //    [self.tableView reloadData];
+    
+    // 修改一行数据后刷新
+//    TableViewSectionInfo *sectionInfo = [self.tableManager getSectionInfoWithIdentifier:@"呵呵呵"];
+//    TableViewRowInfo *rowInfo = [self.tableManager getRowInfoWithIdentifier:@"哈哈哈" withSectionInfo:sectionInfo];
+//    rowInfo.rowInfoObj0.infoValue = @"施文松";
+////    [self.tableView reloadData];
+//    [self.tableManager reloadSectionData:@[sectionInfo] withRowAnimation:UITableViewRowAnimationFade];
+    
+    // 查找sectionInfo的位置
+    TableViewSectionInfo *sectionInfo = [self.tableManager getSectionInfoWithIdentifier:@"呵呵呵"];
+    NSInteger index = [self.tableManager indexOfSectionInfos:sectionInfo];
+    TableViewRowInfo *rowInfo = [self.tableManager getRowInfoWithIdentifier:@"哈哈哈" withSectionInfo:sectionInfo];
+    NSInteger index1 = [self.tableManager indexOfRowInfos:rowInfo withSectionInfo:sectionInfo];
+    NSLog(@"index == %ld", index);
+    NSLog(@"index1 == %ld", index1);
+    return;
+    
 	NetViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NetViewController"];
 	[self.navigationController pushViewController:vc animated:YES];
 }
@@ -41,32 +85,32 @@
 	WS(ws);
 	NSArray *list = @[
 					  @[@{
-							@"title" : @"处方记录",
+							@"title" : @"一. 处方记录",
 							}],
 					  @[@{
-							@"title" : @"发布通知",
+							@"title" : @"二. 1.发布通知",
 							},
 						@{
-							@"title" : @"执业点管理",
+							@"title" : @"2.执业点管理",
 							},
 						@{
-							@"title" : @"我的名片",
+							@"title" : @"3.我的名片",
 							},
 						@{
-							@"title" : @"我的问卷",
+							@"title" : @"4.我的问卷",
 							},
 						@{
-							@"title" : @"我的收藏",
+							@"title" : @"5.我的收藏",
 							}],
 					  @[@{
-							@"title" : @"建议投诉",
+							@"title" : @"三. 建议投诉",
 							},
 						@{
 							@"title" : @"设置",
 							}],
                       @[
                         @{
-                            @"title" : @"发布通知",
+                            @"title" : @"四. 发布通知",
                             },
                         @{
                             @"title" : @"执业点管理",
@@ -124,17 +168,23 @@
 	for(int i = 0; i < list.count; i ++){
 		NSArray *array = list[i];
 		TableViewSectionInfo *section = [TableViewSectionInfo new];
+        if (i == 1) {
+            section.identifier = @"呵呵呵";
+        }
 		section.headerHeightBlock = ^CGFloat(UITableView * _Nonnull tableViewCurrent, NSInteger currentSection, TableViewSectionInfo * _Nonnull currentSectionInfo) {
 			return 10;
 		};
 		for (int j = 0; j < array.count; j++) {
 			NSDictionary *dict = array[j];
 			TableViewRowInfo *row = [TableViewRowInfo new];
+            if (j == 2) {
+                row.identifier = @"哈哈哈";
+            }
 			row.cellClass = NSStringFromClass([UITableViewCell class]);
 			row.rowInfoObj0.infoValue = dict[@"title"];
 			row.rowInfoObj0.valueDescription = @"施文松";
 			row.setCellValueBlock = ^(UITableViewCell * _Nonnull currentCell, UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
-				currentCell.textLabel.text = dict[@"title"];
+				currentCell.textLabel.text = rowInfo.rowInfoObj0.infoValue;
 			};
 			row.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull currentSectionInfo, TableViewRowInfo * _Nonnull currentRowInfo) {
 				return 44.0;
@@ -142,10 +192,10 @@
 			row.didSelectBlock = ^(UITableView * _Nonnull tableViewCurrent, NSIndexPath * _Nonnull indexPathCurrent, TableViewSectionInfo * _Nonnull currentSectionInfo, TableViewRowInfo * _Nonnull currentRowInfo) {
 //				UITableViewCell *cell = [tableViewCurrent cellForRowAtIndexPath:indexPathCurrent];
 				NSLog(@"点击了 == %@", currentRowInfo.rowInfoObj0.infoValue);
-				if ([currentRowInfo.rowInfoObj0.infoValue isEqualToString:@"处方记录"]) {
+				if ([currentRowInfo.rowInfoObj0.infoValue isEqualToString:@"一. 处方记录"]) {
 					ViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
 					[ws.navigationController pushViewController:vc animated:YES];
-				}else if([currentRowInfo.rowInfoObj0.infoValue isEqualToString:@"发布通知"]){
+				}else if([currentRowInfo.rowInfoObj0.infoValue isEqualToString:@"二. 1.发布通知"]){
 					TestViewController *test = [TestViewController new];
 					[ws.navigationController pushViewController:test animated:YES];
 				}
@@ -176,7 +226,7 @@
 
 	
 	manager.groupSectionArray = modelsArray;
-	
+
 	[self createSubject];
 }
 

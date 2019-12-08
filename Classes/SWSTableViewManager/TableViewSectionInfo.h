@@ -14,6 +14,20 @@ NS_ASSUME_NONNULL_BEGIN
 @class TableValueModel;
 @interface TableViewSectionInfo : NSObject
 
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier;
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier1;
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier2;
+
+/**
+ 隐藏当前section
+ */
+@property (assign, nonatomic) BOOL hidden;
+
 @property (strong, nonatomic) NSMutableArray *subRowsArray;
 
 /**
@@ -100,6 +114,20 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface TableViewRowInfo : NSObject
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier;
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier1;
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier2;
+
+/**
+ 隐藏当前section
+ */
+@property (assign, nonatomic) BOOL hidden;
 
 /**
  cell的高度

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
  分组信息
  */
 @property (strong, nonatomic) NSMutableArray *groupSectionArray;
+
+
 /**
  titles
  */
@@ -121,6 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)createTableViewManager:(NSObject *)vc tableView:(UITableView *)tableView;
 
+
 /**
  刷新列表
 
@@ -128,6 +131,56 @@ NS_ASSUME_NONNULL_BEGIN
  @param animation 刷新动画
  */
 - (void)reloadSectionData:(NSArray <TableViewSectionInfo *> *)sectionInfos withRowAnimation:(UITableViewRowAnimation)animation;
+
+
+/// 根据identifier查找tableViewSectionInfo(多个sectionInfo)
+/// @param identifier 标识
+- (NSArray<TableViewSectionInfo *> *)getMoreSectionInfoWithIdentifier:(NSString *)identifier;
+
+/// 根据identifier查找tableViewSectionInfo(单个sectionInfo)
+/// @param identifier 标识
+- (TableViewSectionInfo *)getSectionInfoWithIdentifier:(NSString *)identifier;
+
+/// 根据predicate查找tableViewSectionInfo (多个sectionInfo)
+/// @param predicate 谓词
+- (NSArray<TableViewSectionInfo *> *)getMoreSectionInfoWithPredicate:(NSPredicate *)predicate;
+
+/// 根据predicate查找tableViewSectionInfo (单个sectionInfo)
+/// @param predicate 标识
+- (TableViewSectionInfo *)getSectionInfoWithPredicate:(NSPredicate *)predicate;
+
+/// 根据identifier查找tableViewRowInfo(多个rowInfo)
+/// @param identifier 标识
+/// @param sectionInfo 数据源
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithIdentifier:(NSString *)identifier
+                                              withSectionInfo:(TableViewSectionInfo *)sectionInfo;
+
+/// 根据identifier查找tableViewRowInfo(单个RowInfos)
+/// @param identifier 标识
+/// @param sectionInfo 数据源
+- (TableViewRowInfo *)getRowInfoWithIdentifier:(NSString *)identifier
+                               withSectionInfo:(TableViewSectionInfo *)sectionInfo;
+
+/// 根据predicate查找tableViewRowInfo(多个RowInfos)
+/// @param predicate 谓词
+/// @param sectionInfo 数据源
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithPredicate:(NSPredicate *)predicate
+                                             withSectionInfo:(TableViewSectionInfo *)sectionInfo;
+/// 根据predicate查找tableViewRowInfo(单个RowInfos)
+/// @param predicate 谓词
+/// @param sectionInfo 数据源
+- (TableViewRowInfo *)getRowInfoWithPredicate:(NSPredicate *)predicate
+                              withSectionInfo:(TableViewSectionInfo *)sectionInfo;
+
+/// 查找sectionInfo的index
+/// @param sectionInfo 对应的组信息
+- (NSInteger)indexOfSectionInfos:(TableViewSectionInfo *)sectionInfo;
+
+/// 查找rowInfo的index
+/// @param rowInfo 对应的行信息
+/// @param sectionInfo 对应的组信息
+- (NSInteger)indexOfRowInfos:(TableViewRowInfo *)rowInfo
+             withSectionInfo:(TableViewSectionInfo *)sectionInfo;
 
 /**
  创建实例

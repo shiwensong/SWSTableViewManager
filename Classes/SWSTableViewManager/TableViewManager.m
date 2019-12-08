@@ -13,6 +13,9 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 
 @interface TableViewManager ()
 
+@property (strong, nonatomic) NSPredicate *sectionPredicate;
+@property (strong, nonatomic) NSPredicate *rowPredicate;
+
 @end
 
 @implementation TableViewManager
@@ -36,17 +39,125 @@ static char const *const kTableManagerKey = "kTableManagerKey";
  */
 - (void)reloadSectionData:(NSArray <TableViewSectionInfo *> *)sectionInfos withRowAnimation:(UITableViewRowAnimation)animation
 {
-    NSMutableArray *reloadIndexPaths = [NSMutableArray array];
+    NSAssert(sectionInfos.count > 0, @"sectionInfos不能为空!");
+    NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
     for (int i = 0; i < self.groupSectionArray.count; i++) {
         TableViewSectionInfo *sectionInfo = self.groupSectionArray[i];
         if ([sectionInfos containsObject:sectionInfo]) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
-            [reloadIndexPaths addObject:indexPath];
+            [indexSet addIndex:i];
         }
     }
-    if (reloadIndexPaths.count > 0 && self.tableView) {
-        [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:animation];
+    if (indexSet.count > 0 && self.tableView) {
+        [self.tableView reloadSections:indexSet withRowAnimation:animation];
     }
+}
+
+/// 根据identifier查找tableViewSectionInfo(多个sectionInfo)
+/// @param identifier 标识
+- (NSArray<TableViewSectionInfo *> *)getMoreSectionInfoWithIdentifier:(NSString *)identifier{
+    NSAssert(identifier.length != 0, @"标识不能为空");
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+    NSArray *sectionArray = [self.groupSectionArray filteredArrayUsingPredicate:predicate];
+    NSAssert(sectionArray.count > 0, @"根据identifier无法查询到对应的sectionInfos!");
+    return sectionArray;
+}
+
+/// 根据identifier查找tableViewSectionInfo(单个sectionInfo)
+/// @param identifier 标识
+- (TableViewSectionInfo *)getSectionInfoWithIdentifier:(NSString *)identifier{
+    NSArray *sectionArray = [self getMoreSectionInfoWithIdentifier:identifier];
+    return sectionArray.firstObject;
+}
+
+/// 根据predicate查找tableViewSectionInfo (多个sectionInfo)
+/// @param predicate 谓词
+- (NSArray<TableViewSectionInfo *> *)getMoreSectionInfoWithPredicate:(NSPredicate *)predicate{
+    NSAssert(predicate, @"标识不能为空");
+    NSArray *sectionArray = [self.groupSectionArray filteredArrayUsingPredicate:predicate];
+    NSAssert(sectionArray.count > 0, @"根据predicate无法查询到对应的sectionInfos!");
+    return sectionArray;
+}
+
+/// 根据predicate查找tableViewSectionInfo (单个sectionInfo)
+/// @param predicate 标识
+- (TableViewSectionInfo *)getSectionInfoWithPredicate:(NSPredicate *)predicate{
+    NSArray *sectionArray = [self getMoreSectionInfoWithPredicate:predicate];
+    return sectionArray.firstObject;
+}
+
+/// 根据identifier查找tableViewRowInfo(多个rowInfo)
+/// @param identifier 标识
+/// @param sectionInfo 数据源
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithIdentifier:(NSString *)identifier
+                                              withSectionInfo:(TableViewSectionInfo *)sectionInfo{
+    NSAssert(identifier.length != 0, @"标识不能为空");
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+    NSArray *subRowInfos = [sectionInfo.subRowsArray filteredArrayUsingPredicate:predicate];
+    NSAssert(subRowInfos.count > 0, @"根据identifier无法查询到对应的rowInfos!");
+    return subRowInfos;
+}
+
+/// 根据identifier查找tableViewRowInfo(单个RowInfos)
+/// @param identifier 标识
+/// @param sectionInfo 数据源
+- (TableViewRowInfo *)getRowInfoWithIdentifier:(NSString *)identifier
+                                              withSectionInfo:(TableViewSectionInfo *)sectionInfo{
+    NSArray *sectionArray = [self getMoreRowInfoWithIdentifier:identifier withSectionInfo:sectionInfo];
+    return sectionArray.firstObject;
+}
+
+/// 根据predicate查找tableViewRowInfo(多个RowInfos)
+/// @param predicate 谓词
+/// @param sectionInfo 数据源
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithPredicate:(NSPredicate *)predicate
+                                             withSectionInfo:(TableViewSectionInfo *)sectionInfo{
+    NSAssert(predicate, @"标识不能为空");
+    NSArray *subRowInfos = [sectionInfo.subRowsArray filteredArrayUsingPredicate:predicate];
+    NSAssert(subRowInfos.count > 0, @"根据predicate无法查询到对应的rowInfos!");
+    return subRowInfos;
+}
+/// 根据predicate查找tableViewRowInfo(单个RowInfos)
+/// @param predicate 谓词
+/// @param sectionInfo 数据源
+- (TableViewRowInfo *)getRowInfoWithPredicate:(NSPredicate *)predicate
+                                             withSectionInfo:(TableViewSectionInfo *)sectionInfo{
+    NSArray *subRowInfos = [self getMoreRowInfoWithPredicate:predicate withSectionInfo:sectionInfo];
+    return subRowInfos.firstObject;
+}
+
+
+/// 查找sectionInfo的index
+/// @param sectionInfo 对应的组信息
+- (NSInteger)indexOfSectionInfos:(TableViewSectionInfo *)sectionInfo{
+    NSAssert(sectionInfo, @"sectionInfo不能为空!");
+    NSInteger index = -1;
+    for (int i = 0; i < self.groupSectionArray.count; i++) {
+        TableViewSectionInfo *tempSectionInfo = self.groupSectionArray[i];
+        if ([sectionInfo isEqual:tempSectionInfo]) {
+            index = i;
+            break;
+        }
+    }
+    NSAssert(index >= 0, @"没有找到TableViewSectionInfo的index");
+    return index;
+}
+
+/// 查找rowInfo的index
+/// @param rowInfo 对应的行信息
+/// @param sectionInfo 对应的组信息
+- (NSInteger)indexOfRowInfos:(TableViewRowInfo *)rowInfo
+             withSectionInfo:(TableViewSectionInfo *)sectionInfo{
+    NSAssert(rowInfo, @"sectionInfo不能为空!");
+    NSInteger index = -1;
+    for (int i = 0; i < sectionInfo.subRowsArray.count; i++) {
+        TableViewSectionInfo *tempRowInfo = sectionInfo.subRowsArray[i];
+        if ([rowInfo isEqual:tempRowInfo]) {
+            index = i;
+            break;
+        }
+    }
+    NSAssert(index >= 0, @"没有找到TableViewRowInfo的index");
+    return index;
 }
 
 + (instancetype)createTableViewManager
@@ -58,20 +169,25 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.groupSectionArray.count;
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    return sectionInfoArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[section];
-    return sectionInfo.subRowsArray.count;
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
+    NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
+    return rowInfoArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[indexPath.section];
-    TableViewRowInfo *rowInfo = sectionInfo.subRowsArray[indexPath.row];
-
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
+    NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
+    TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
+    
     if (rowInfo.cellBlock) {
         return rowInfo.cellBlock(tableView, indexPath, sectionInfo, rowInfo);
     } else {
@@ -88,7 +204,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
                 }
             }
             cell.tintColor = [UIColor colorWithRed:0.07 green:0.62 blue:0.30 alpha:1.00];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }
@@ -121,8 +237,10 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     /// cell被点击
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[indexPath.section];
-    TableViewRowInfo *rowInfo = sectionInfo.subRowsArray[indexPath.row];
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
+    NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
+    TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
 
     if (rowInfo.didSelectBlock) {
         rowInfo.didSelectBlock(tableView, indexPath, sectionInfo, rowInfo);
@@ -137,102 +255,128 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[indexPath.section];
-    TableViewRowInfo *rowInfo = sectionInfo.subRowsArray[indexPath.row];
-    if (rowInfo.cellHeightBlock) {
-        return rowInfo.cellHeightBlock(tableView, indexPath, sectionInfo, rowInfo);
-    } else {
-        if (self.cellHeightBlock) {
-            return self.cellHeightBlock(tableView, indexPath, sectionInfo, rowInfo);
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
+    NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
+    TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
+    if (rowInfo.hidden) {
+        return kNotFooterHeight;
+    }else{
+        if (rowInfo.cellHeightBlock) {
+            return rowInfo.cellHeightBlock(tableView, indexPath, sectionInfo, rowInfo);
         } else {
-            // 都没有返回高度，使用默认高度：44
+            if (self.cellHeightBlock) {
+                return self.cellHeightBlock(tableView, indexPath, sectionInfo, rowInfo);
+            } else {
+                // 都没有返回高度，使用默认高度：44
+            }
         }
+        return rowInfo.cellHeight;
     }
-    return rowInfo.cellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[section];
-    if (sectionInfo.headerHeightBlock) {
-        return sectionInfo.headerHeightBlock(tableView, section, sectionInfo);
-    } else {
-        if (self.headerHeightBlock) {
-            return self.headerHeightBlock(tableView, section, sectionInfo);
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
+    if (sectionInfo.hidden) {
+        return kNotFooterHeight;
+    }else{
+        if (sectionInfo.headerHeightBlock) {
+            return sectionInfo.headerHeightBlock(tableView, section, sectionInfo);
         } else {
-            // 都没有实现，使用默认高度0.0001；
+            if (self.headerHeightBlock) {
+                return self.headerHeightBlock(tableView, section, sectionInfo);
+            } else {
+                // 都没有实现，使用默认高度0.0001；
+            }
         }
+        return sectionInfo.headerViewHeight;
     }
-    return sectionInfo.headerViewHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[section];
-    if (sectionInfo.footerHeightBlock) {
-        return sectionInfo.footerHeightBlock(tableView, section, sectionInfo);
-    } else {
-        if (self.footerHeightBlock) {
-            return self.footerHeightBlock(tableView, section, sectionInfo);
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
+    if (sectionInfo.hidden) {
+        return kNotFooterHeight;
+    }else{
+        if (sectionInfo.footerHeightBlock) {
+            return sectionInfo.footerHeightBlock(tableView, section, sectionInfo);
         } else {
-            // 都没有实现，使用默认高度0.0001；
+            if (self.footerHeightBlock) {
+                return self.footerHeightBlock(tableView, section, sectionInfo);
+            } else {
+                // 都没有实现，使用默认高度0.0001；
+            }
         }
+        return sectionInfo.footerViewHeight;
     }
-    return sectionInfo.footerViewHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[section];
-    if (sectionInfo.headerViewBlock) {
-        return sectionInfo.headerViewBlock(tableView, section, sectionInfo);
-    } else {
-        if (self.headerViewBlock) {
-            return self.headerViewBlock(tableView, section, sectionInfo);
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
+    if (sectionInfo.hidden) {
+        return nil;
+    }else{
+        if (sectionInfo.headerViewBlock) {
+            return sectionInfo.headerViewBlock(tableView, section, sectionInfo);
         } else {
-            if (sectionInfo.headerViewClass.length > 0) {
-                UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionInfo.headerViewClass];
-                if (sectionInfo.setHeaderViewValueBlock) {
-                    sectionInfo.setHeaderViewValueBlock(headerView, tableView, section, sectionInfo);
-                } else {
-                    if (self.setHeaderViewValueBlock) {
-                        self.setHeaderViewValueBlock(headerView, tableView, section, sectionInfo);
-                    }
-                }
-                return headerView;
+            if (self.headerViewBlock) {
+                return self.headerViewBlock(tableView, section, sectionInfo);
             } else {
-                // 没有传入headerView Class，return nil;
+                if (sectionInfo.headerViewClass.length > 0) {
+                    UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionInfo.headerViewClass];
+                    if (sectionInfo.setHeaderViewValueBlock) {
+                        sectionInfo.setHeaderViewValueBlock(headerView, tableView, section, sectionInfo);
+                    } else {
+                        if (self.setHeaderViewValueBlock) {
+                            self.setHeaderViewValueBlock(headerView, tableView, section, sectionInfo);
+                        }
+                    }
+                    return headerView;
+                } else {
+                    // 没有传入headerView Class，return nil;
+                }
             }
         }
+        return nil;
     }
-    return nil;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    TableViewSectionInfo *sectionInfo = self.groupSectionArray[section];
-    if (sectionInfo.footerViewBlock) {
-        return sectionInfo.footerViewBlock(tableView, section, sectionInfo);
-    } else {
-        if (self.footerViewBlock) {
-            return self.footerViewBlock(tableView, section, sectionInfo);
+    NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
+    if (sectionInfo.hidden) {
+        return nil;
+    }else{
+        if (sectionInfo.footerViewBlock) {
+            return sectionInfo.footerViewBlock(tableView, section, sectionInfo);
         } else {
-            if (sectionInfo.footerViewClass.length > 0) {
-                UITableViewHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionInfo.footerViewClass];
-                if (sectionInfo.setfooterViewValueBlock) {
-                    sectionInfo.setfooterViewValueBlock(footerView, tableView, section, sectionInfo);
-                } else {
-                    if (self.setfooterViewValueBlock) {
-                        self.setfooterViewValueBlock(footerView, tableView, section, sectionInfo);
-                    }
-                }
-                return footerView;
+            if (self.footerViewBlock) {
+                return self.footerViewBlock(tableView, section, sectionInfo);
             } else {
-                // 没有传入footerView Class，return nil;
+                if (sectionInfo.footerViewClass.length > 0) {
+                    UITableViewHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionInfo.footerViewClass];
+                    if (sectionInfo.setfooterViewValueBlock) {
+                        sectionInfo.setfooterViewValueBlock(footerView, tableView, section, sectionInfo);
+                    } else {
+                        if (self.setfooterViewValueBlock) {
+                            self.setfooterViewValueBlock(footerView, tableView, section, sectionInfo);
+                        }
+                    }
+                    return footerView;
+                } else {
+                    // 没有传入footerView Class，return nil;
+                }
             }
         }
+        return nil;
     }
-    return nil;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -339,6 +483,20 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 
 #pragma mark - Custom
 
+- (NSPredicate *)sectionPredicate{
+    if (!_sectionPredicate) {
+        _sectionPredicate = [NSPredicate predicateWithFormat:@"hidden == 0"];
+    }
+    return _sectionPredicate;
+}
+
+- (NSPredicate *)rowPredicate{
+    if (!_rowPredicate) {
+        _rowPredicate = [NSPredicate predicateWithFormat:@"hidden == 0"];
+    }
+    return _rowPredicate;
+}
+
 - (NSMutableArray *)groupSectionArray
 {
     if (!_groupSectionArray) {
@@ -346,6 +504,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     }
     return _groupSectionArray;
 }
+
 
 - (TableValueModel *)tableViewManagerObj0
 {
@@ -506,6 +665,8 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     }
     return _tableViewManagerObj19;
 }
+
+
 
 #pragma mark - Public
 
