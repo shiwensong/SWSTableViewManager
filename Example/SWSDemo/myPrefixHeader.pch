@@ -73,7 +73,6 @@ dispatch_async(dispatch_get_main_queue(), block);\
 #define kSWSStatusBarHeight     20
 #define kGlobalSpace 10.0  // 所有的间隙
 #define kGlobalCommonLabelHeight 20.0  // 所有的间隙
-#define kNotFooterHeight  0.000001;
 
 /// 检查OSStatus错误
 #define VStatus(err, errMsg, successMsg) {\
