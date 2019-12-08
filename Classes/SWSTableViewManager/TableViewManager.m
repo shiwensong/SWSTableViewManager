@@ -7,7 +7,6 @@
 //
 
 static char const *const kTableManagerKey = "kTableManagerKey";
-#define kNotFooterHeight  0.000001;
 
 #import "TableViewManager.h"
 #import<objc/runtime.h>
@@ -261,7 +260,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
     TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
     if (rowInfo.hidden) {
-        return kNotFooterHeight;
+        return 0.000001;
     }else{
         if (rowInfo.cellHeightBlock) {
             return rowInfo.cellHeightBlock(tableView, indexPath, sectionInfo, rowInfo);
@@ -281,7 +280,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
-        return kNotFooterHeight;
+        return 0.000001;
     }else{
         if (sectionInfo.headerHeightBlock) {
             return sectionInfo.headerHeightBlock(tableView, section, sectionInfo);
@@ -301,7 +300,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
-        return kNotFooterHeight;
+        return 0.000001;
     }else{
         if (sectionInfo.footerHeightBlock) {
             return sectionInfo.footerHeightBlock(tableView, section, sectionInfo);
