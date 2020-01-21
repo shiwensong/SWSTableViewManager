@@ -125,12 +125,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 刷新列表
+ 刷新section
 
  @param sectionInfos 传入sectionInfos
  @param animation 刷新动画
  */
-- (void)reloadSectionData:(NSArray <TableViewSectionInfo *> *)sectionInfos withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)reloadSectionData:(NSArray <TableViewSectionInfo *> *)sectionInfos
+         withRowAnimation:(UITableViewRowAnimation)animation;
+
+/**
+ 刷新rowInfos
+
+ @param rowInfos 传入rowInfos
+ @param sectionInfo sectionInfo
+ @param animation 刷新动画
+ */
+- (void)reloadRowData:(NSArray <TableViewRowInfo *> *)rowInfos
+      withSectionInfo:(TableViewSectionInfo *)sectionInfo
+     withRowAnimation:(UITableViewRowAnimation)animation;
 
 
 /// 根据identifier查找tableViewSectionInfo(多个sectionInfo)

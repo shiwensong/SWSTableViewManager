@@ -32,7 +32,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 }
 
 /**
- 刷新列表
+ 刷新Section
 
  @param sectionInfos 传入sectionInfos
  @param animation 刷新动画
@@ -49,6 +49,32 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     }
     if (indexSet.count > 0 && self.tableView) {
         [self.tableView reloadSections:indexSet withRowAnimation:animation];
+    }
+}
+
+/**
+ 刷新rowInfos
+
+ @param rowInfos 传入rowInfos
+ @param sectionInfo sectionInfo
+ @param animation 刷新动画
+ */
+- (void)reloadRowData:(NSArray <TableViewRowInfo *> *)rowInfos withSectionInfo:(TableViewSectionInfo *)sectionInfo withRowAnimation:(UITableViewRowAnimation)animation
+{
+    NSAssert(rowInfos.count > 0, @"rowInfos不能为空!");
+    NSAssert(sectionInfo, @"sectionInfo不能为空!");
+    
+    NSInteger section = [self.groupSectionArray indexOfObject:sectionInfo];
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    for (int i = 0; i < sectionInfo.subRowsArray.count; i ++) {
+        TableViewRowInfo *rowInfo = sectionInfo.subRowsArray[i];
+        if ([rowInfos containsObject:rowInfo]) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:section];
+            [indexPaths addObject:indexPath];
+        }
+    }
+    if (indexPaths.count > 0 && self.tableView) {
+        [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
     }
 }
 
