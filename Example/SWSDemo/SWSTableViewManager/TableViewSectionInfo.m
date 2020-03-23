@@ -18,6 +18,8 @@
     if (self) {
         _headerViewHeight = 0.00001;
         _footerViewHeight = 0.00001;
+        _headerBgColor = [UIColor clearColor];
+        _footerBgColor = [UIColor clearColor];
     }
     return self;
 }
@@ -374,6 +376,19 @@
 	}
 	NSString *str = [NSString stringWithFormat:@"infoValue: %@ \nvalueDescription: %@%@", self.infoValue, self.valueDescription, noteStr];
 	return str;
+}
+
+@end
+
+@implementation SWSHeaderFooterView
+
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithReuseIdentifier:reuseIdentifier];
+    if (self) {
+        UIView *view = [[UIView alloc] initWithFrame:self.frame];
+        self.backgroundView = view;
+    }
+    return self;
 }
 
 @end
