@@ -18,8 +18,8 @@
     if (self) {
         _headerViewHeight = 0.00001;
         _footerViewHeight = 0.00001;
-        _headerBgColor = [UIColor clearColor];
-        _footerBgColor = [UIColor clearColor];
+        _headerBgColor = [UIColor colorWithRed:0.97 green:0.96 blue:0.96 alpha:1.00];
+        _footerBgColor = [UIColor colorWithRed:0.97 green:0.96 blue:0.96 alpha:1.00];
     }
     return self;
 }
