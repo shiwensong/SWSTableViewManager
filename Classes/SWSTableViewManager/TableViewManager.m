@@ -28,6 +28,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     tableView.dataSource = vc.tableManager;
     tableView.delegate = vc.tableManager;
     vc.tableManager.tableView = tableView;
+    [tableView registerClass:[SWSHeaderFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
     return vc.tableManager;
 }
 
@@ -346,7 +347,9 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
-        return nil;
+        SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
+        headerFooterView.backgroundView.backgroundColor = sectionInfo.headerBgColor;
+        return headerFooterView;
     }else{
         if (sectionInfo.headerViewBlock) {
             return sectionInfo.headerViewBlock(tableView, section, sectionInfo);
@@ -369,7 +372,10 @@ static char const *const kTableManagerKey = "kTableManagerKey";
                 }
             }
         }
-        return nil;
+        
+        SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
+        headerFooterView.backgroundView.backgroundColor = sectionInfo.headerBgColor;
+        return headerFooterView;
     }
 }
 
@@ -378,7 +384,9 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
-        return nil;
+        SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
+        headerFooterView.backgroundView.backgroundColor = sectionInfo.footerBgColor;
+        return headerFooterView;
     }else{
         if (sectionInfo.footerViewBlock) {
             return sectionInfo.footerViewBlock(tableView, section, sectionInfo);
@@ -401,7 +409,9 @@ static char const *const kTableManagerKey = "kTableManagerKey";
                 }
             }
         }
-        return nil;
+        SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
+        headerFooterView.backgroundView.backgroundColor = sectionInfo.footerBgColor;
+        return headerFooterView;
     }
 }
 

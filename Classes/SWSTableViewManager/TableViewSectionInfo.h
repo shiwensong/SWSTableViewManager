@@ -23,6 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** 标识 */
 @property (copy, nonatomic) NSString *identifier2;
 
+/** header背景颜色 */
+@property (strong, nonatomic) UIColor *headerBgColor;
+
+/** footer背景颜色 */
+@property (strong, nonatomic) UIColor *footerBgColor;
+
 /**
  隐藏当前section
  */
@@ -205,5 +211,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *noteString;
 
 @end
+
+@interface SWSHeaderFooterView : UITableViewHeaderFooterView
+
+
+
+@end
+
+
 
 NS_ASSUME_NONNULL_END
