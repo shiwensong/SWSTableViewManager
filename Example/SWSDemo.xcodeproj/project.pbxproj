@@ -10,6 +10,8 @@
 		5CEC09C87F15C4E9CD2D3FD0 /* Pods_SWSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE35ED1DBD12265D79CC5B26 /* Pods_SWSDemo.framework */; };
 		90F9A90A22F00993000DE7C0 /* SWSAboutUsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F9A90722F00992000DE7C0 /* SWSAboutUsCell.m */; };
 		90F9A90B22F00993000DE7C0 /* SWSAboutUsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F9A90822F00993000DE7C0 /* SWSAboutUsCell.xib */; };
+		BA3074AC2449D92200AEAE0F /* UITableViewCell+sectionRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3074AB2449D92200AEAE0F /* UITableViewCell+sectionRowInfo.m */; };
+		BA3074B32449FE2B00AEAE0F /* SWSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3074B12449FE2B00AEAE0F /* SWSModel.m */; };
 		BA34B6DA23A9BBA300972E48 /* TableViewSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BA34B6D623A9BBA300972E48 /* TableViewSectionInfo.m */; };
 		BA34B6DB23A9BBA300972E48 /* TableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA34B6D923A9BBA300972E48 /* TableViewManager.m */; };
 		BA4D3FBC2283F933009626D5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4D3FBB2283F933009626D5 /* TestViewController.m */; };
@@ -47,6 +49,10 @@
 		90F9A90722F00992000DE7C0 /* SWSAboutUsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSAboutUsCell.m; sourceTree = "<group>"; };
 		90F9A90822F00993000DE7C0 /* SWSAboutUsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWSAboutUsCell.xib; sourceTree = "<group>"; };
 		90F9A90922F00993000DE7C0 /* SWSAboutUsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSAboutUsCell.h; sourceTree = "<group>"; };
+		BA3074AA2449D92200AEAE0F /* UITableViewCell+sectionRowInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+sectionRowInfo.h"; sourceTree = "<group>"; };
+		BA3074AB2449D92200AEAE0F /* UITableViewCell+sectionRowInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+sectionRowInfo.m"; sourceTree = "<group>"; };
+		BA3074B12449FE2B00AEAE0F /* SWSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSModel.m; sourceTree = "<group>"; };
+		BA3074B22449FE2B00AEAE0F /* SWSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSModel.h; sourceTree = "<group>"; };
 		BA34B6D523A9BBA300972E48 /* SWSTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSTableViewManager.h; sourceTree = "<group>"; };
 		BA34B6D623A9BBA300972E48 /* TableViewSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewSectionInfo.m; sourceTree = "<group>"; };
 		BA34B6D723A9BBA300972E48 /* TableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewManager.h; sourceTree = "<group>"; };
@@ -124,6 +130,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BA3074B02449FE1700AEAE0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA3074B22449FE2B00AEAE0F /* SWSModel.h */,
+				BA3074B12449FE2B00AEAE0F /* SWSModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BA34B6D423A9BBA300972E48 /* SWSTableViewManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +147,8 @@
 				BA34B6D923A9BBA300972E48 /* TableViewManager.m */,
 				BA34B6D823A9BBA300972E48 /* TableViewSectionInfo.h */,
 				BA34B6D623A9BBA300972E48 /* TableViewSectionInfo.m */,
+				BA3074AA2449D92200AEAE0F /* UITableViewCell+sectionRowInfo.h */,
+				BA3074AB2449D92200AEAE0F /* UITableViewCell+sectionRowInfo.m */,
 			);
 			path = SWSTableViewManager;
 			sourceTree = "<group>";
@@ -169,8 +186,8 @@
 		BAA80C24227E7A2D009B14FE /* 处方界面 */ = {
 			isa = PBXGroup;
 			children = (
+				BA3074B02449FE1700AEAE0F /* Model */,
 				BAA80C27227E7A58009B14FE /* ViewController */,
-				BAA80C26227E7A4D009B14FE /* Model */,
 				BAA80C25227E7A47009B14FE /* Cell */,
 			);
 			path = "处方界面";
@@ -184,13 +201,6 @@
 				BAA80C35227E857D009B14FE /* Section0 */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		BAA80C26227E7A4D009B14FE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		BAA80C27227E7A58009B14FE /* ViewController */ = {
@@ -475,11 +485,13 @@
 				BAB71E922277DC2B009021D1 /* NetModel.m in Sources */,
 				BAA80C2A227E7A70009B14FE /* PrescriptionViewController.m in Sources */,
 				BAA80C45227E9249009B14FE /* ContentwCell.m in Sources */,
+				BA3074AC2449D92200AEAE0F /* UITableViewCell+sectionRowInfo.m in Sources */,
 				BAA80C33227E829C009B14FE /* PresSectionHeaderCell.m in Sources */,
 				BACCE4802265CE7100FDFAFD /* UIViewController+addFresh.m in Sources */,
 				BAB71E952277E97D009021D1 /* InputViewController.m in Sources */,
 				BA4D3FBC2283F933009626D5 /* TestViewController.m in Sources */,
 				BAA9FB802282B7070030A8A1 /* BaseViewModel.m in Sources */,
+				BA3074B32449FE2B00AEAE0F /* SWSModel.m in Sources */,
 				BACCE4702265C0EF00FDFAFD /* main.m in Sources */,
 				BA34B6DA23A9BBA300972E48 /* TableViewSectionInfo.m in Sources */,
 				BAB71E8E2277D939009021D1 /* NetCell.m in Sources */,

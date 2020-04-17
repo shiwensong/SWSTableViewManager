@@ -23,20 +23,8 @@
 	self.view.backgroundColor = white_Color;
 	
 	[self createRequests];
-	
-	NFCNDEFReaderSession *session = [[NFCNDEFReaderSession alloc] initWithDelegate:self queue:dispatch_queue_create(NULL, DISPATCH_QUEUE_CONCURRENT) invalidateAfterFirstRead:NO];
-	self.session = session;
-	[session beginSession];
 }
 
-- (void)readerSession:(nonnull NFCNDEFReaderSession *)session didDetectNDEFs:(nonnull NSArray<NFCNDEFMessage *> *)messages {
-	
-	for (NFCNDEFMessage *message in messages) {
-		for (NFCNDEFPayload *payload in message.records) {
-			NSLog(@"Payload data:%@",payload.payload);
-		}
-	}
-}
 
 - (void)createRequests{
 	
@@ -45,7 +33,7 @@
 		AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 		manager.requestSerializer = [AFHTTPRequestSerializer serializer];
 		manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-		[manager GET:@"http://127.0.0.1:5004" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+		[manager GET:@"https://www.jianshu.com" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
 			
 		} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 			NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
@@ -67,7 +55,7 @@
 		manager.requestSerializer = [AFHTTPRequestSerializer serializer];
 		manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 		
-		[manager GET:@"http://127.0.0.1:5004/home" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+		[manager GET:@"https://www.baidu.com" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
 			
 		} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 			NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];

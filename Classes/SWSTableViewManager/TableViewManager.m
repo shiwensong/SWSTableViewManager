@@ -10,6 +10,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 
 #import "TableViewManager.h"
 #import<objc/runtime.h>
+#import "UITableViewCell+sectionRowInfo.h"
 
 @interface TableViewManager ()
 
@@ -214,15 +215,30 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
     NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
     TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
+    sectionInfo.sectionIndex = indexPath.section;
+    rowInfo.sectionIndex = indexPath.section;
+    rowInfo.rowIndex = indexPath.row;
+    rowInfo.indexPath = indexPath;
     
     if (rowInfo.cellBlock) {
-        return rowInfo.cellBlock(tableView, indexPath, sectionInfo, rowInfo);
+        UITableViewCell *cell = rowInfo.cellBlock(tableView, indexPath, sectionInfo, rowInfo);
+        cell.sectionInfo = sectionInfo;
+        cell.rowInfo = rowInfo;
+        [cell setCellValue];
+        return cell;
     } else {
         if (self.cellBlock) {
-            return self.cellBlock(tableView, indexPath, sectionInfo, rowInfo);
+            UITableViewCell *cell = self.cellBlock(tableView, indexPath, sectionInfo, rowInfo);
+            cell.sectionInfo = sectionInfo;
+            cell.rowInfo = rowInfo;
+            [cell setCellValue];
+            return cell;
         } else {
             NSAssert(rowInfo.cellClass.length > 0, @"cellClass 必须传入，否则请实现TableViewRowInfo或者TableViewManager的cellBlock回调！");
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rowInfo.cellClass forIndexPath:indexPath];
+            cell.sectionInfo = sectionInfo;
+            cell.rowInfo = rowInfo;
+            [cell setCellValue];
             if (rowInfo.setCellValueBlock) {
                 rowInfo.setCellValueBlock(cell, tableView, indexPath, sectionInfo, rowInfo);
             } else {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "SWSTableViewManager"
-  spec.version      = "0.1.8"
+  spec.version      = "0.1.9"
   spec.summary      = "tableView的管理类."
   spec.homepage     = "https://github.com/shiwensong/SWSTableViewManager"
   spec.license      = "MIT"

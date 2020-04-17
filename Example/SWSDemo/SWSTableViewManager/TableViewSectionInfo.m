@@ -192,6 +192,55 @@
     return _sectionInfoObj19;
 }
 
+/// 根据identifier查找tableViewRowInfo(多个rowInfo)
+/// @param identifier 标识
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithIdentifier:(NSString *)identifier{
+    NSAssert(identifier.length != 0, @"标识不能为空");
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+    NSArray *subRowInfos = [self.subRowsArray filteredArrayUsingPredicate:predicate];
+    NSAssert(subRowInfos.count > 0, @"根据identifier无法查询到对应的rowInfos!");
+    return subRowInfos;
+}
+
+/// 根据identifier查找tableViewRowInfo(单个RowInfos)
+/// @param identifier 标识
+- (TableViewRowInfo *)getRowInfoWithIdentifier:(NSString *)identifier{
+    NSArray *sectionArray = [self getMoreRowInfoWithIdentifier:identifier];
+    return sectionArray.firstObject;
+}
+
+/// 根据predicate查找tableViewRowInfo(多个RowInfos)
+/// @param predicate 谓词
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithPredicate:(NSPredicate *)predicate{
+    NSAssert(predicate, @"标识不能为空");
+    NSArray *subRowInfos = [self.subRowsArray filteredArrayUsingPredicate:predicate];
+    NSAssert(subRowInfos.count > 0, @"根据predicate无法查询到对应的rowInfos!");
+    return subRowInfos;
+}
+/// 根据predicate查找tableViewRowInfo(单个RowInfos)
+/// @param predicate 谓词
+- (TableViewRowInfo *)getRowInfoWithPredicate:(NSPredicate *)predicate{
+    NSArray *subRowInfos = [self getMoreRowInfoWithPredicate:predicate];
+    return subRowInfos.firstObject;
+}
+
+
+/// 查找rowInfo的index
+/// @param rowInfo 对应的行信息
+- (NSInteger)indexOfRowInfos:(TableViewRowInfo *)rowInfo{
+    NSAssert(rowInfo, @"sectionInfo不能为空!");
+    NSInteger index = -1;
+    for (int i = 0; i < self.subRowsArray.count; i++) {
+        TableViewSectionInfo *tempRowInfo = self.subRowsArray[i];
+        if ([rowInfo isEqual:tempRowInfo]) {
+            index = i;
+            break;
+        }
+    }
+    NSAssert(index >= 0, @"没有找到TableViewRowInfo的index");
+    return index;
+}
+
 @end
 
 @implementation TableViewRowInfo

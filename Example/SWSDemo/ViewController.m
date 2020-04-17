@@ -58,13 +58,13 @@
 //    [self.tableManager reloadSectionData:@[sectionInfo] withRowAnimation:UITableViewRowAnimationFade];
     
     // 查找sectionInfo的位置
-    TableViewSectionInfo *sectionInfo = [self.tableManager getSectionInfoWithIdentifier:@"呵呵呵"];
-    NSInteger index = [self.tableManager indexOfSectionInfos:sectionInfo];
-    TableViewRowInfo *rowInfo = [self.tableManager getRowInfoWithIdentifier:@"哈哈哈" withSectionInfo:sectionInfo];
-    NSInteger index1 = [self.tableManager indexOfRowInfos:rowInfo withSectionInfo:sectionInfo];
-    NSLog(@"index == %ld", index);
-    NSLog(@"index1 == %ld", index1);
-    return;
+//    TableViewSectionInfo *sectionInfo = [self.tableManager getSectionInfoWithIdentifier:@"呵呵呵"];
+//    NSInteger index = [self.tableManager indexOfSectionInfos:sectionInfo];
+//    TableViewRowInfo *rowInfo = [self.tableManager getRowInfoWithIdentifier:@"哈哈哈" withSectionInfo:sectionInfo];
+//    NSInteger index1 = [self.tableManager indexOfRowInfos:rowInfo withSectionInfo:sectionInfo];
+//    NSLog(@"index == %ld", index);
+//    NSLog(@"index1 == %ld", index1);
+//    return;
     
 	NetViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NetViewController"];
 	[self.navigationController pushViewController:vc animated:YES];
@@ -164,6 +164,7 @@
 	[TableViewManager registerClass:self.tableView withCellTypes:@[NSStringFromClass([UITableViewCell class])]];
     [TableViewManager registerNib:self.tableView withCellNibTypes:@[NSStringFromClass([SWSAboutUsCell class])]];
 	
+    
 	NSMutableArray *modelsArray = [NSMutableArray array];
 	for(int i = 0; i < list.count; i ++){
 		NSArray *array = list[i];

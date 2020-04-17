@@ -29,10 +29,13 @@
 	[self setupAutoHeightWithBottomViewsArray:@[self.addressLabel] bottomMargin:kGlobalSpace];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setCellValue{
+    RAC(self.peopleLabel, text) = [[RACObserve(self.rowInfo.rowInfoObj0, infoValue) takeUntil:self.rac_prepareForReuseSignal] map:^id _Nullable(id  _Nullable value) {
+       return value[@"title"];
+    }];
+    RAC(self.addressLabel, text) = [[RACObserve(self.rowInfo.rowInfoObj0, infoValue) takeUntil:self.rac_prepareForReuseSignal] map:^id _Nullable(id  _Nullable value) {
+       return value[@"address"];
+    }];
 }
 
 @end

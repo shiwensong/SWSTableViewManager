@@ -19,14 +19,9 @@
 	.rightSpaceToView(superView, kGlobalSpace)
 	.topSpaceToView(superView, 100)
 	.heightIs(20);
-	
-	[self setupAutoHeightWithBottomViewsArray:@[self.statusLabel] bottomMargin:100];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+    [self setupAutoHeightWithBottomViewsArray:@[self.statusLabel] bottomMargin:100];
+    RAC(self.statusLabel, text) = [RACObserve(self, rowInfo.rowInfoObj0.infoValue) takeUntil:self.rac_prepareForReuseSignal];
 }
 
 @end

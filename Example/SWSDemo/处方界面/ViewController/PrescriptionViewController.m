@@ -12,6 +12,7 @@
 #import "PresAddressCell.h"
 #import "InfoCell.h"
 #import "ContentwCell.h"
+#import "SWSModel.h"
 
 @interface PrescriptionViewController ()
 
@@ -73,12 +74,12 @@
 	//MARK: - 第0组
 	TableViewSectionInfo *section0 = [TableViewSectionInfo new];
 	TableViewRowInfo *row00 = [TableViewRowInfo new];
-	self.row00 = row00;
-	self.section0 = section0;
+//	self.row00 = row00;
+//	self.section0 = section0;
 	row00.rowInfoObj0.infoValue = @"已付款";
 	row00.cellClass = NSStringFromClass([PrescriptionHeaderCell class]);
 	row00.setCellValueBlock = ^(PrescriptionHeaderCell *cell, UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
-		cell.statusLabel.text = rowInfo.rowInfoObj0.infoValue;
+//		cell.statusLabel.text = rowInfo.rowInfoObj0.infoValue;
 	};
 	row00.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 		return [tableView cellHeightForIndexPath:indexPath cellClass:[PrescriptionHeaderCell class] cellContentViewWidth:_kWidth cellDataSetting:^(UITableViewCell *cell) {
@@ -92,15 +93,19 @@
 	
 	TableViewRowInfo *row02 = [TableViewRowInfo new];
 	row02.cellClass = NSStringFromClass([PresAddressCell class]);
+    row02.rowInfoObj0.infoValue = @{
+        @"title" : @"收货人: 施文松  19923286028",
+        @"address" : @"重庆市沙坪坝区金阳牛津街"
+    };
 	row02.setCellValueBlock = ^(PresAddressCell *addressCell, UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
-		addressCell.peopleLabel.text = @"收货人: 施文松  19923286028";
-		addressCell.addressLabel.text=  @"重庆市沙坪坝区金阳牛津街";
+//		addressCell.peopleLabel.text = @"收货人: 施文松  19923286028";
+//		addressCell.addressLabel.text=  @"重庆市沙坪坝区金阳牛津街";
 	};
 	row02.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 		CGFloat height = [tableView cellHeightForIndexPath:indexPath cellClass:[PresAddressCell class] cellContentViewWidth:_kWidth cellDataSetting:^(UITableViewCell *cell) {
-			PresAddressCell *addressCell = (PresAddressCell *)cell;
-			addressCell.peopleLabel.text = @"收货人: 施文松  19923286028";
-			addressCell.addressLabel.text=  @"重庆市沙坪坝区金阳牛津街";
+            [cell setCellValue];
+//			addressCell.peopleLabel.text = @"收货人: 施文松  19923286028";
+//			addressCell.addressLabel.text=  @"重庆市沙坪坝区金阳牛津街";
 		}];
 		return height;
 	};
@@ -126,15 +131,19 @@
 	for (int i = 0; i < infoList.count; i ++) {
 		TableViewRowInfo *row11 = [TableViewRowInfo new];
 		row11.cellClass = NSStringFromClass([InfoCell class]);
-		row11.rowInfoObj0.infoValue = infoList[i];
-		row11.rowInfoObj1.infoValue = info1List[i];
+//		row11.rowInfoObj0.infoValue = infoList[i];
+//		row11.rowInfoObj1.infoValue = info1List[i];
+        SWSModel *model = [[SWSModel alloc] init];
+        model.title = infoList[i];
+        model.detail = info1List[i];
+        row11.rowInfoObj0.infoValue = model;
 		row11.setCellValueBlock = ^(InfoCell *cell, UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
-			cell.titlelabel.text = rowInfo.rowInfoObj0.infoValue;
-			cell.subTitleLabel.text = rowInfo.rowInfoObj1.infoValue;
+//			cell.titlelabel.text = rowInfo.rowInfoObj0.infoValue;
+//			cell.subTitleLabel.text = rowInfo.rowInfoObj1.infoValue;
 		};
 		row11.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 			return [tableView cellHeightForIndexPath:indexPath cellClass:[InfoCell class] cellContentViewWidth:_kWidth cellDataSetting:^(UITableViewCell *cell) {
-				
+                [cell setCellValue];
 			}];
 		};
 		[section1.subRowsArray addObject:row11];

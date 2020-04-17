@@ -10,6 +10,7 @@
 #define SWSTableViewManager_h
 
 #import "TableViewManager.h"
-
+#import "TableViewSectionInfo.h"
+#import "UITableViewCell+sectionRowInfo.h"
 
 #endif /* SWSTableViewManager_h */

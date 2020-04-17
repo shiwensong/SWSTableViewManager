@@ -7,6 +7,7 @@
 //
 
 #import "InfoCell.h"
+#import "SWSModel.h"
 
 @implementation InfoCell
 
@@ -31,8 +32,13 @@
 	[self setupAutoHeightWithBottomViewsArray:@[self.titlelabel, self.subTitleLabel] bottomMargin:kGlobalSpace];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)setCellValue{
+    RAC(self.titlelabel, text) = [[RACObserve(self.rowInfo.rowInfoObj0, infoValue) takeUntil:self.rac_prepareForReuseSignal] map:^id _Nullable(SWSModel *model) {
+        return model.title;
+    }];
+    RAC(self.subTitleLabel, text) = [[RACObserve(self.rowInfo.rowInfoObj0, infoValue) takeUntil:self.rac_prepareForReuseSignal] map:^id _Nullable(SWSModel *model) {
+        return model.detail;
+    }];
 }
 
 @end

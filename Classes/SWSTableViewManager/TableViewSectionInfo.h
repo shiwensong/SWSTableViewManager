@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** footer背景颜色 */
 @property (strong, nonatomic) UIColor *footerBgColor;
 
+/** section下标 (indexPath.section)  --- 当cell没有被加载或者显示过,是不会有值的*/
+@property (assign, nonatomic) NSInteger sectionIndex;
+
 /**
  隐藏当前section
  */
@@ -117,6 +120,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) TableValueModel *sectionInfoObj18;
 @property (strong, nonatomic) TableValueModel *sectionInfoObj19;
 
+
 @end
 
 @interface TableViewRowInfo : NSObject
@@ -129,6 +133,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 标识 */
 @property (copy, nonatomic) NSString *identifier2;
+
+/** section下标 (indexPath.section)  --- 当cell没有被加载或者显示过,是不会有值的 */
+@property (assign, nonatomic) NSInteger sectionIndex;
+
+/** row下标 (indexPath.row)  --- 当cell没有被加载或者显示过,是不会有值的*/
+@property (assign, nonatomic) NSInteger rowIndex;
+
+/** indexPath --- 当cell没有被加载或者显示过,是不会有值的 */
+@property (strong, nonatomic) NSIndexPath *indexPath;
 
 /**
  隐藏当前section
@@ -158,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  已经有cell，直接赋值的操作
  */
-@property (copy, nonatomic) void (^ setCellValueBlock)(id _Nonnull cell, UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
+@property (copy, nonatomic) void (^ setCellValueBlock)(id _Nonnull currentCell, UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
 
 /**
  返回cell高度, 默认返回44.0
