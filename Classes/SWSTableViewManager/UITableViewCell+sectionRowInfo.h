@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TableViewSectionInfo.h>
 #import <objc/message.h>
+#import "TableViewSectionInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
