@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TableViewSectionInfo.h"
+#import <TableViewSectionInfo.h>
 #import <objc/message.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,18 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setCellValue;
 
-//@property (strong, nonatomic) TableViewSectionInfo *sectionInfo;
-//
-//@property (strong, nonatomic) TableViewRowInfo *rowInfo;
+// 要注意没有可能没有值
+@property (strong, nonatomic) TableViewSectionInfo *sectionInfo;
 
-/// 要注意没有可能没有值
-- (void)setSectionInfo:(TableViewSectionInfo * _Nonnull)sectionInfo;
-/// 要注意可能没有值
-- (void)setRowInfo:(TableViewRowInfo * _Nonnull)rowInfo;
-
-- (TableViewRowInfo * _Nonnull)rowInfo;
-
-- (TableViewSectionInfo * _Nonnull)sectionInfo;
+// 要注意可能没有值
+@property (strong, nonatomic) TableViewRowInfo *rowInfo;
 
 @end
 

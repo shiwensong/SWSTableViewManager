@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TableViewSectionInfo.h"
+#import <TableViewSectionInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
