@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TableViewManager : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) UITableView *tableView;
+@property (assign, nonatomic) UITableView *tableView;
 
 /**
  分组信息
