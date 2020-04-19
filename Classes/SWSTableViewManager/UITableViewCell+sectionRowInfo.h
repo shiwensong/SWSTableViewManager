@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <objc/message.h>
 #import "TableViewSectionInfo.h"
-
-@class TableViewSectionInfo;
-@class TableViewRowInfo;
+#import <objc/message.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 要注意可能没有值
 @property (strong, nonatomic) TableViewRowInfo *rowInfo;
+
 
 @end
 
