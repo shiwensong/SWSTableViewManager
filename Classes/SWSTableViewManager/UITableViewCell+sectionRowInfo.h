@@ -10,6 +10,9 @@
 #import <objc/message.h>
 #import "TableViewSectionInfo.h"
 
+@class TableViewSectionInfo;
+@class TableViewRowInfo;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableViewCell (sectionRowInfo)
