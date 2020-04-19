@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "SWSTableViewManager"
-  spec.version      = "0.1.9"
+  spec.version      = "0.1.10"
   spec.summary      = "tableView的管理类."
   spec.homepage     = "https://github.com/shiwensong/SWSTableViewManager"
   spec.license      = "MIT"
@@ -16,5 +16,5 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios
   spec.source       = { :git => "https://github.com/shiwensong/SWSTableViewManager.git", :tag => "#{spec.version}" }
   spec.source_files  = "Classes/SWSTableViewManager/**/*.{h,m}"
-  spec.public_header_files = "Classes/SWSTableViewManager/SWSTableViewManager.h"
+  spec.public_header_files = "Classes/SWSTableViewManager/*.h"
 end

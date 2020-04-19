@@ -14,7 +14,7 @@ static char const * const kRowInfoKey = "kRowInfoKey";
 
 @implementation UITableViewCell (sectionRowInfo)
 
-- (void)setCellValue{
+- (void)sws_setCellValue{
     
 }
 

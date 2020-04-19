@@ -224,21 +224,21 @@ static char const *const kTableManagerKey = "kTableManagerKey";
         UITableViewCell *cell = rowInfo.cellBlock(tableView, indexPath, sectionInfo, rowInfo);
         cell.sectionInfo = sectionInfo;
         cell.rowInfo = rowInfo;
-        [cell setCellValue];
+        [cell sws_setCellValue];
         return cell;
     } else {
         if (self.cellBlock) {
             UITableViewCell *cell = self.cellBlock(tableView, indexPath, sectionInfo, rowInfo);
             cell.sectionInfo = sectionInfo;
             cell.rowInfo = rowInfo;
-            [cell setCellValue];
+            [cell sws_setCellValue];
             return cell;
         } else {
             NSAssert(rowInfo.cellClass.length > 0, @"cellClass 必须传入，否则请实现TableViewRowInfo或者TableViewManager的cellBlock回调！");
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rowInfo.cellClass forIndexPath:indexPath];
             cell.sectionInfo = sectionInfo;
             cell.rowInfo = rowInfo;
-            [cell setCellValue];
+            [cell sws_setCellValue];
             if (rowInfo.setCellValueBlock) {
                 rowInfo.setCellValueBlock(cell, tableView, indexPath, sectionInfo, rowInfo);
             } else {

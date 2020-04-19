@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableViewCell (sectionRowInfo)
 
-- (void)setCellValue;
+- (void)sws_setCellValue;
 
 // 要注意没有可能没有值
 @property (strong, nonatomic) TableViewSectionInfo *sectionInfo;

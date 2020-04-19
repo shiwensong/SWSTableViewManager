@@ -103,7 +103,7 @@
 	};
 	row02.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 		CGFloat height = [tableView cellHeightForIndexPath:indexPath cellClass:[PresAddressCell class] cellContentViewWidth:_kWidth cellDataSetting:^(UITableViewCell *cell) {
-            [cell setCellValue];
+            [cell sws_setCellValue];
 //			addressCell.peopleLabel.text = @"收货人: 施文松  19923286028";
 //			addressCell.addressLabel.text=  @"重庆市沙坪坝区金阳牛津街";
 		}];
@@ -143,7 +143,7 @@
 		};
 		row11.cellHeightBlock = ^CGFloat(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath, TableViewSectionInfo * _Nonnull sectionInfo, TableViewRowInfo * _Nonnull rowInfo) {
 			return [tableView cellHeightForIndexPath:indexPath cellClass:[InfoCell class] cellContentViewWidth:_kWidth cellDataSetting:^(UITableViewCell *cell) {
-                [cell setCellValue];
+                [cell sws_setCellValue];
 			}];
 		};
 		[section1.subRowsArray addObject:row11];
