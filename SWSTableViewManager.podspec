@@ -16,4 +16,5 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios
   spec.source       = { :git => "https://github.com/shiwensong/SWSTableViewManager.git", :tag => "#{spec.version}" }
   spec.source_files  = "Classes/SWSTableViewManager/**/*.{h,m}"
+  spec.public_header_files = "Classes/SWSTableViewManager/SWSTableViewManager.h"
 end
