@@ -11,7 +11,118 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class TableViewSectionInfo;
 @class TableValueModel;
+@interface TableViewRowInfo : NSObject
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier;
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier1;
+
+/** 标识 */
+@property (copy, nonatomic) NSString *identifier2;
+
+/** section下标 (indexPath.section)  --- 当cell没有被加载或者显示过,是不会有值的 */
+@property (assign, nonatomic) NSInteger sectionIndex;
+
+/** row下标 (indexPath.row)  --- 当cell没有被加载或者显示过,是不会有值的*/
+@property (assign, nonatomic) NSInteger rowIndex;
+
+/** indexPath --- 当cell没有被加载或者显示过,是不会有值的 */
+@property (strong, nonatomic) NSIndexPath *indexPath;
+
+/**
+ 隐藏当前section
+ */
+@property (assign, nonatomic) BOOL hidden;
+
+/**
+ cell的高度
+ */
+@property (assign, nonatomic) CGFloat cellHeight;
+
+/**
+ 需要返回cell的设置
+ */
+@property (copy, nonatomic) UITableViewCell * (^ cellBlock)(UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
+
+/**
+ 设置cell的名称（必传）
+ */
+@property (copy, nonatomic) NSString *cellClass;
+
+/**
+ 添加type字段
+ */
+@property (copy, nonatomic) NSString *type;
+
+/**
+ 已经有cell，直接赋值的操作
+ */
+@property (copy, nonatomic) void (^ setCellValueBlock)(id _Nonnull currentCell, UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
+
+/**
+ 返回cell高度, 默认返回44.0
+ */
+@property (copy, nonatomic) CGFloat (^ cellHeightBlock)(UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
+
+/**
+ cell的点击事件
+ */
+@property (copy, nonatomic) void (^ didSelectBlock)(UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
+
+@property (strong, nonatomic) TableValueModel *rowInfoObj0;
+@property (strong, nonatomic) TableValueModel *rowInfoObj1;
+@property (strong, nonatomic) TableValueModel *rowInfoObj2;
+@property (strong, nonatomic) TableValueModel *rowInfoObj3;
+@property (strong, nonatomic) TableValueModel *rowInfoObj4;
+@property (strong, nonatomic) TableValueModel *rowInfoObj5;
+@property (strong, nonatomic) TableValueModel *rowInfoObj6;
+@property (strong, nonatomic) TableValueModel *rowInfoObj7;
+@property (strong, nonatomic) TableValueModel *rowInfoObj8;
+@property (strong, nonatomic) TableValueModel *rowInfoObj9;
+@property (strong, nonatomic) TableValueModel *rowInfoObj10;
+@property (strong, nonatomic) TableValueModel *rowInfoObj11;
+@property (strong, nonatomic) TableValueModel *rowInfoObj12;
+@property (strong, nonatomic) TableValueModel *rowInfoObj13;
+@property (strong, nonatomic) TableValueModel *rowInfoObj14;
+@property (strong, nonatomic) TableValueModel *rowInfoObj15;
+@property (strong, nonatomic) TableValueModel *rowInfoObj16;
+@property (strong, nonatomic) TableValueModel *rowInfoObj17;
+@property (strong, nonatomic) TableValueModel *rowInfoObj18;
+@property (strong, nonatomic) TableValueModel *rowInfoObj19;
+
+@end
+
+@interface TableValueModel : NSObject
+
+/**
+ 对应值或者model
+ */
+@property (strong, nonatomic) id infoValue;
+
+/**
+ 值的描述
+ */
+@property (copy, nonatomic) NSString *valueDescription;
+
+/**
+ 添加一个备注字段
+ */
+@property (copy, nonatomic) NSString *noteString;
+
+@end
+
+@interface SWSHeaderFooterView : UITableViewHeaderFooterView
+
+
+
+@end
+
+
+
 @interface TableViewSectionInfo : NSObject
 
 /** 标识 */
@@ -121,116 +232,28 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) TableValueModel *sectionInfoObj19;
 
 
-@end
+/// 根据identifier查找tableViewRowInfo(多个rowInfo)
+/// @param identifier 标识
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithIdentifier:(NSString *)identifier;
 
-@interface TableViewRowInfo : NSObject
+/// 根据identifier查找tableViewRowInfo(单个RowInfos)
+/// @param identifier 标识
+- (TableViewRowInfo *)getRowInfoWithIdentifier:(NSString *)identifier;
 
-/** 标识 */
-@property (copy, nonatomic) NSString *identifier;
+/// 根据predicate查找tableViewRowInfo(多个RowInfos)
+/// @param predicate 谓词
+- (NSArray<TableViewRowInfo *> *)getMoreRowInfoWithPredicate:(NSPredicate *)predicate;
 
-/** 标识 */
-@property (copy, nonatomic) NSString *identifier1;
+/// 根据predicate查找tableViewRowInfo(单个RowInfos)
+/// @param predicate 谓词
+- (TableViewRowInfo *)getRowInfoWithPredicate:(NSPredicate *)predicate;
 
-/** 标识 */
-@property (copy, nonatomic) NSString *identifier2;
 
-/** section下标 (indexPath.section)  --- 当cell没有被加载或者显示过,是不会有值的 */
-@property (assign, nonatomic) NSInteger sectionIndex;
-
-/** row下标 (indexPath.row)  --- 当cell没有被加载或者显示过,是不会有值的*/
-@property (assign, nonatomic) NSInteger rowIndex;
-
-/** indexPath --- 当cell没有被加载或者显示过,是不会有值的 */
-@property (strong, nonatomic) NSIndexPath *indexPath;
-
-/**
- 隐藏当前section
- */
-@property (assign, nonatomic) BOOL hidden;
-
-/**
- cell的高度
- */
-@property (assign, nonatomic) CGFloat cellHeight;
-
-/**
- 需要返回cell的设置
- */
-@property (copy, nonatomic) UITableViewCell * (^ cellBlock)(UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
-
-/**
- 设置cell的名称（必传）
- */
-@property (copy, nonatomic) NSString *cellClass;
-
-/**
- 添加type字段
- */
-@property (copy, nonatomic) NSString *type;
-
-/**
- 已经有cell，直接赋值的操作
- */
-@property (copy, nonatomic) void (^ setCellValueBlock)(id _Nonnull currentCell, UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
-
-/**
- 返回cell高度, 默认返回44.0
- */
-@property (copy, nonatomic) CGFloat (^ cellHeightBlock)(UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
-
-/**
- cell的点击事件
- */
-@property (copy, nonatomic) void (^ didSelectBlock)(UITableView *tableView, NSIndexPath *indexPath, TableViewSectionInfo *sectionInfo, TableViewRowInfo *rowInfo);
-
-@property (strong, nonatomic) TableValueModel *rowInfoObj0;
-@property (strong, nonatomic) TableValueModel *rowInfoObj1;
-@property (strong, nonatomic) TableValueModel *rowInfoObj2;
-@property (strong, nonatomic) TableValueModel *rowInfoObj3;
-@property (strong, nonatomic) TableValueModel *rowInfoObj4;
-@property (strong, nonatomic) TableValueModel *rowInfoObj5;
-@property (strong, nonatomic) TableValueModel *rowInfoObj6;
-@property (strong, nonatomic) TableValueModel *rowInfoObj7;
-@property (strong, nonatomic) TableValueModel *rowInfoObj8;
-@property (strong, nonatomic) TableValueModel *rowInfoObj9;
-@property (strong, nonatomic) TableValueModel *rowInfoObj10;
-@property (strong, nonatomic) TableValueModel *rowInfoObj11;
-@property (strong, nonatomic) TableValueModel *rowInfoObj12;
-@property (strong, nonatomic) TableValueModel *rowInfoObj13;
-@property (strong, nonatomic) TableValueModel *rowInfoObj14;
-@property (strong, nonatomic) TableValueModel *rowInfoObj15;
-@property (strong, nonatomic) TableValueModel *rowInfoObj16;
-@property (strong, nonatomic) TableValueModel *rowInfoObj17;
-@property (strong, nonatomic) TableValueModel *rowInfoObj18;
-@property (strong, nonatomic) TableValueModel *rowInfoObj19;
+/// 查找rowInfo的index
+/// @param rowInfo 对应的行信息
+- (NSInteger)indexOfRowInfos:(TableViewRowInfo *)rowInfo;
 
 @end
-
-@interface TableValueModel : NSObject
-
-/**
- 对应值或者model
- */
-@property (strong, nonatomic) id infoValue;
-
-/**
- 值的描述
- */
-@property (copy, nonatomic) NSString *valueDescription;
-
-/**
- 添加一个备注字段
- */
-@property (copy, nonatomic) NSString *noteString;
-
-@end
-
-@interface SWSHeaderFooterView : UITableViewHeaderFooterView
-
-
-
-@end
-
 
 
 NS_ASSUME_NONNULL_END
