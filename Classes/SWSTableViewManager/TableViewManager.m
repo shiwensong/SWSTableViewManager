@@ -281,8 +281,14 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        return;
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
     NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
+    if (rowInfoArray.count == 0) {
+        return;
+    }
     TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
 
     if (rowInfo.didSelectBlock) {
@@ -299,8 +305,14 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        return 0.000001;
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
     NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
+    if (rowInfoArray.count == 0) {
+        return 0.000001;
+    }
     TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
     if (rowInfo.hidden) {
         return 0.000001;
@@ -321,6 +333,9 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        return 0.000001;
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
         return 0.000001;
@@ -341,6 +356,9 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        return 0.000001;
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
         return 0.000001;
@@ -361,6 +379,11 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
+        headerFooterView.backgroundView.backgroundColor = sectionInfo.headerBgColor;
+        return headerFooterView;
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
         SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
@@ -398,6 +421,11 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
+        headerFooterView.backgroundView.backgroundColor = sectionInfo.footerBgColor;
+        return headerFooterView;
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     if (sectionInfo.hidden) {
         SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
