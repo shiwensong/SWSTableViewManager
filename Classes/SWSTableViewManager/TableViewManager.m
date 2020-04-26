@@ -381,7 +381,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
     if (sectionInfoArray.count == 0) {
         SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
-        headerFooterView.backgroundView.backgroundColor = sectionInfo.headerBgColor;
+        headerFooterView.backgroundView.backgroundColor = [UIColor colorWithRed:0.97 green:0.96 blue:0.96 alpha:1.00];
         return headerFooterView;
     }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
@@ -423,7 +423,7 @@ static char const *const kTableManagerKey = "kTableManagerKey";
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
     if (sectionInfoArray.count == 0) {
         SWSHeaderFooterView *headerFooterView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([SWSHeaderFooterView class])];
-        headerFooterView.backgroundView.backgroundColor = sectionInfo.footerBgColor;
+        headerFooterView.backgroundView.backgroundColor = [UIColor colorWithRed:0.97 green:0.96 blue:0.96 alpha:1.00];
         return headerFooterView;
     }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
