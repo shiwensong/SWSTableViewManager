@@ -198,12 +198,18 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        return 0;
+    }
     return sectionInfoArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        return 0;
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[section];
     NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
     return rowInfoArray.count;
@@ -212,6 +218,10 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
+    if (sectionInfoArray.count == 0) {
+        NSLog(@"--------------------noneCell--------------------")
+        return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"noneCell"];
+    }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
     NSArray *rowInfoArray = [sectionInfo.subRowsArray filteredArrayUsingPredicate:self.rowPredicate];
     TableViewRowInfo *rowInfo = rowInfoArray[indexPath.row];
