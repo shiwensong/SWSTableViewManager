@@ -219,7 +219,6 @@ static char const *const kTableManagerKey = "kTableManagerKey";
 {
     NSArray *sectionInfoArray = [self.groupSectionArray filteredArrayUsingPredicate:self.sectionPredicate];
     if (sectionInfoArray.count == 0) {
-        NSLog(@"--------------------noneCell--------------------");
         return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"noneCell"];
     }
     TableViewSectionInfo *sectionInfo = sectionInfoArray[indexPath.section];
